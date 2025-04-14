@@ -5,15 +5,16 @@ plugins {
 group = 'net.slimediamond'
 version = '1.0-SNAPSHOT'
 
-repositories {
-    mavenCentral()
-}
+project.ext.lwjglVersion = "3.3.6"
 
-dependencies {
-    testImplementation platform('org.junit:junit-bom:5.10.0')
-    testImplementation 'org.junit.jupiter:junit-jupiter'
-}
+allprojects {
+    apply plugin: 'java'
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
 
-test {
-    useJUnitPlatform()
+    dependencies {
+        implementation 'net.slimediamond:data:0.0.6'
+    }
 }
