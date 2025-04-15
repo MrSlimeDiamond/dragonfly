@@ -14,7 +14,9 @@ import java.awt.RenderingHints;
 import java.awt.font.FontRenderContext;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
+import java.net.URISyntaxException;
 import java.nio.ByteBuffer;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -55,7 +57,11 @@ public class OpenGLGraphics implements Graphics {
     @Override
     public void drawTexture(Texture texture, int x, int y, int width, int height) {
         glEnable(GL_TEXTURE_2D);
-        glBindTexture(GL_TEXTURE_2D, loadTexture(texture.getResourcePath().getUrl().getPath()));
+		try {
+			glBindTexture(GL_TEXTURE_2D, loadTexture(Paths.get(texture.getResourcePath().getUrl().toURI()).toString()));
+		} catch (URISyntaxException e) {
+			throw new RuntimeException(e);
+		}
 
         glBegin(GL_QUADS);
         glTexCoord2f(0, 0); glVertex2i(x, y);
@@ -119,7 +125,6 @@ public class OpenGLGraphics implements Graphics {
     }
 
     public int loadTexture(String path) {
-
         if (textureIds.containsKey(path)) {
             return textureIds.get(path);
         }
@@ -129,7 +134,7 @@ public class OpenGLGraphics implements Graphics {
         try (MemoryStack stack = stackPush()) {
             ByteBuffer image = STBImage.stbi_load(path, width, height, channels, 0);
             if (image == null) {
-                throw new RuntimeException("Failed to load texture");
+                throw new RuntimeException("Failed to load texture. Path: " + path);
             }
 
             int textureID = glGenTextures();
