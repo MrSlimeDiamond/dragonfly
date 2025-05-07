@@ -81,4 +81,9 @@ public class Text implements Renderable {
         Font font = new JLabel().getFont(); // lol
         context.getGraphics().drawString(content, font, pos.getX(), pos.getY(), Colors.BLACK);
     }
+
+    @Override
+    public String toString() {
+        return "Text{content=" + content + ",position=" + position + "}";
+    }
 }

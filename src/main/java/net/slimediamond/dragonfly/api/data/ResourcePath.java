@@ -11,6 +11,9 @@ import java.net.URL;
  * // or for an asset
  * ResourcePath resourcePath = ResourcePath.asset("something.png");
  * </pre>
+ *
+ * @see #of(String)
+ * @see #asset(String)
  */
 public class ResourcePath {
     private final String path;

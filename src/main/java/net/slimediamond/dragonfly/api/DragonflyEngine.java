@@ -25,7 +25,6 @@ import net.slimediamond.dragonfly.api.logger.LoggerWrapper;
 import net.slimediamond.dragonfly.api.render.Renderer;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
