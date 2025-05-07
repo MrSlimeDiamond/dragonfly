@@ -7,6 +7,7 @@ import net.slimediamond.dragonfly.api.entity.EntityType;
 import net.slimediamond.dragonfly.api.entity.manager.EntityManager;
 import net.slimediamond.dragonfly.api.event.listener.DragonflyListener;
 import net.slimediamond.dragonfly.api.input.InputHandler;
+import net.slimediamond.dragonfly.api.logger.LoggerWrapper;
 import net.slimediamond.dragonfly.api.manager.AbstractManager;
 import net.slimediamond.dragonfly.api.maths.time.Time;
 import net.slimediamond.dragonfly.api.maths.vector.Vector2i;
@@ -20,9 +21,8 @@ import net.slimediamond.dragonfly.api.render.DragonflyRenderContext;
 import net.slimediamond.dragonfly.api.render.Graphics;
 import net.slimediamond.dragonfly.api.render.RenderContext;
 import net.slimediamond.dragonfly.api.render.Renderable;
-import net.slimediamond.dragonfly.api.scheduler.Scheduler;
-import net.slimediamond.dragonfly.api.logger.LoggerWrapper;
 import net.slimediamond.dragonfly.api.render.Renderer;
+import net.slimediamond.dragonfly.api.scheduler.Scheduler;
 
 import java.util.ArrayList;
 import java.util.Comparator;

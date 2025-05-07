@@ -8,9 +8,7 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.stb.STBImage;
 import org.lwjgl.system.MemoryStack;
 
-import java.awt.Font;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
+import java.awt.*;
 import java.awt.font.FontRenderContext;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
@@ -20,9 +18,32 @@ import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL11.GL_FILL;
+import static org.lwjgl.opengl.GL11.GL_FRONT_AND_BACK;
+import static org.lwjgl.opengl.GL11.GL_LINE;
+import static org.lwjgl.opengl.GL11.GL_LINEAR;
+import static org.lwjgl.opengl.GL11.GL_QUADS;
+import static org.lwjgl.opengl.GL11.GL_RGBA;
+import static org.lwjgl.opengl.GL11.GL_RGBA8;
+import static org.lwjgl.opengl.GL11.GL_TEXTURE_2D;
+import static org.lwjgl.opengl.GL11.GL_TEXTURE_MAG_FILTER;
+import static org.lwjgl.opengl.GL11.GL_TEXTURE_MIN_FILTER;
+import static org.lwjgl.opengl.GL11.GL_UNSIGNED_BYTE;
+import static org.lwjgl.opengl.GL11.glBegin;
+import static org.lwjgl.opengl.GL11.glBindTexture;
+import static org.lwjgl.opengl.GL11.glDeleteTextures;
+import static org.lwjgl.opengl.GL11.glDisable;
+import static org.lwjgl.opengl.GL11.glEnable;
+import static org.lwjgl.opengl.GL11.glEnd;
+import static org.lwjgl.opengl.GL11.glGenTextures;
+import static org.lwjgl.opengl.GL11.glPolygonMode;
+import static org.lwjgl.opengl.GL11.glTexCoord2f;
+import static org.lwjgl.opengl.GL11.glTexImage2D;
+import static org.lwjgl.opengl.GL11.glTexParameteri;
+import static org.lwjgl.opengl.GL11.glVertex2f;
+import static org.lwjgl.opengl.GL11.glVertex2i;
 import static org.lwjgl.opengl.GL30.glGenerateMipmap;
-import static org.lwjgl.system.MemoryStack.*;
+import static org.lwjgl.system.MemoryStack.stackPush;
 
 public class OpenGLGraphics implements Graphics {
 

@@ -3,7 +3,7 @@ package net.slimediamond.dragonfly.api.data.texture;
 import net.slimediamond.dragonfly.api.data.ResourcePath;
 
 import javax.imageio.ImageIO;
-import java.awt.Image;
+import java.awt.*;
 import java.io.IOException;
 
 /**

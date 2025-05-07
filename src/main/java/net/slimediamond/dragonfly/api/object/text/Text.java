@@ -5,8 +5,8 @@ import net.slimediamond.dragonfly.api.render.Colors;
 import net.slimediamond.dragonfly.api.render.RenderContext;
 import net.slimediamond.dragonfly.api.render.Renderable;
 
-import javax.swing.JLabel;
-import java.awt.Font;
+import javax.swing.*;
+import java.awt.*;
 
 /**
  * Text which can be rendered ingame
