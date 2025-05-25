@@ -59,7 +59,6 @@ public class OpenGLRenderer implements Renderer {
 
     @Override
     public void init(String title, int width, int height) {
-        String suffix = " - OpenGL (Dragonfly Engine)";
         GLFWErrorCallback.createPrint(System.err).set();
 
         if (logger != null) {
@@ -74,7 +73,7 @@ public class OpenGLRenderer implements Renderer {
         glfwDefaultWindowHints();
         glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE);
 
-        window = glfwCreateWindow(width, height, title + suffix, NULL, NULL);
+        window = glfwCreateWindow(width, height, title, NULL, NULL);
         if (window == NULL) {
             throw new RuntimeException("Unable to create GLFW window.");
         }
