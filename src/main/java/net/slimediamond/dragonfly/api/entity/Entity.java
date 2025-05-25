@@ -10,6 +10,7 @@ import net.slimediamond.dragonfly.api.object.GameObject;
  * @see AbstractEntity
  */
 public interface Entity extends GameObject {
+
     /**
      * Get the entity type of this entity
      *
@@ -18,8 +19,7 @@ public interface Entity extends GameObject {
     EntityType getEntityType();
 
     /**
-     * Attach another entity to this entity, and have
-     * its position follow this entity.
+     * Attach another entity to this entity, and have its position follow this entity.
      *
      * @param entity Entity to attach
      */
@@ -33,11 +33,11 @@ public interface Entity extends GameObject {
     void detach(Entity entity);
 
     /**
-     * Get whether a certain entity is attached to this entity, which
-     * means that it will have its position updated as this one does
+     * Get whether a certain entity is attached to this entity, which means that it will have its position updated as this one does
      *
      * @param entity Entity to check
      * @return Entity attachment
      */
     boolean isAttached(Entity entity);
+
 }

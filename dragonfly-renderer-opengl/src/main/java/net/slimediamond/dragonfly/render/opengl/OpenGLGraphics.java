@@ -1,23 +1,5 @@
 package net.slimediamond.dragonfly.render.opengl;
 
-import net.slimediamond.dragonfly.api.data.texture.Texture;
-import net.slimediamond.dragonfly.api.render.Color;
-import net.slimediamond.dragonfly.api.render.Graphics;
-import org.lwjgl.BufferUtils;
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.stb.STBImage;
-import org.lwjgl.system.MemoryStack;
-
-import java.awt.*;
-import java.awt.font.FontRenderContext;
-import java.awt.geom.Rectangle2D;
-import java.awt.image.BufferedImage;
-import java.net.URISyntaxException;
-import java.nio.ByteBuffer;
-import java.nio.file.Paths;
-import java.util.HashMap;
-import java.util.Map;
-
 import static org.lwjgl.opengl.GL11.GL_FILL;
 import static org.lwjgl.opengl.GL11.GL_FRONT_AND_BACK;
 import static org.lwjgl.opengl.GL11.GL_LINE;
@@ -44,6 +26,25 @@ import static org.lwjgl.opengl.GL11.glVertex2f;
 import static org.lwjgl.opengl.GL11.glVertex2i;
 import static org.lwjgl.opengl.GL30.glGenerateMipmap;
 import static org.lwjgl.system.MemoryStack.stackPush;
+
+import java.awt.Font;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
+import java.awt.font.FontRenderContext;
+import java.awt.geom.Rectangle2D;
+import java.awt.image.BufferedImage;
+import java.net.URISyntaxException;
+import java.nio.ByteBuffer;
+import java.nio.file.Paths;
+import java.util.HashMap;
+import java.util.Map;
+import net.slimediamond.dragonfly.api.data.texture.Texture;
+import net.slimediamond.dragonfly.api.render.Color;
+import net.slimediamond.dragonfly.api.render.Graphics;
+import org.lwjgl.BufferUtils;
+import org.lwjgl.opengl.GL11;
+import org.lwjgl.stb.STBImage;
+import org.lwjgl.system.MemoryStack;
 
 public class OpenGLGraphics implements Graphics {
 
@@ -78,17 +79,21 @@ public class OpenGLGraphics implements Graphics {
     @Override
     public void drawTexture(Texture texture, int x, int y, int width, int height) {
         glEnable(GL_TEXTURE_2D);
-		try {
-			glBindTexture(GL_TEXTURE_2D, loadTexture(Paths.get(texture.getResourcePath().getUrl().toURI()).toString()));
-		} catch (URISyntaxException e) {
-			throw new RuntimeException(e);
-		}
+        try {
+            glBindTexture(GL_TEXTURE_2D, loadTexture(Paths.get(texture.getResourcePath().getUrl().toURI()).toString()));
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
 
         glBegin(GL_QUADS);
-        glTexCoord2f(0, 0); glVertex2i(x, y);
-        glTexCoord2f(1, 0); glVertex2i(x + width, y);
-        glTexCoord2f(1, 1); glVertex2i(x + width, y + height);
-        glTexCoord2f(0, 1); glVertex2i(x, y + height);
+        glTexCoord2f(0, 0);
+        glVertex2i(x, y);
+        glTexCoord2f(1, 0);
+        glVertex2i(x + width, y);
+        glTexCoord2f(1, 1);
+        glVertex2i(x + width, y + height);
+        glTexCoord2f(0, 1);
+        glVertex2i(x, y + height);
         glEnd();
 
         glDisable(GL_TEXTURE_2D);
@@ -136,10 +141,14 @@ public class OpenGLGraphics implements Graphics {
         glBindTexture(GL_TEXTURE_2D, texID);
 
         glBegin(GL_QUADS);
-        glTexCoord2f(0, 0); glVertex2f(xPos, yPos);
-        glTexCoord2f(1, 0); glVertex2f(xPos + width, yPos);
-        glTexCoord2f(1, 1); glVertex2f(xPos + width, yPos + height);
-        glTexCoord2f(0, 1); glVertex2f(xPos, yPos + height);
+        glTexCoord2f(0, 0);
+        glVertex2f(xPos, yPos);
+        glTexCoord2f(1, 0);
+        glVertex2f(xPos + width, yPos);
+        glTexCoord2f(1, 1);
+        glVertex2f(xPos + width, yPos + height);
+        glTexCoord2f(0, 1);
+        glVertex2f(xPos, yPos + height);
         glEnd();
 
         glDeleteTextures(texID);
@@ -172,4 +181,5 @@ public class OpenGLGraphics implements Graphics {
             return textureID;
         }
     }
+
 }

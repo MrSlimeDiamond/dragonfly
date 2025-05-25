@@ -1,10 +1,10 @@
 package net.slimediamond.dragonfly.api.logger;
 
 /**
- * A wrapper for {@link Logger}, since it could possibly not be initialized
- * by the engine configuration.
+ * A wrapper for {@link Logger}, since it could possibly not be initialized by the engine configuration.
  */
 public class LoggerWrapper {
+
     private Logger logger;
 
     public Logger getLogger() {
@@ -503,7 +503,7 @@ public class LoggerWrapper {
 
     public void trace(String message, Object p0, Object p1, Object p2, Object p3) {
         if (logger != null) {
-        logger.trace(message, p0, p1, p2, p3);
+            logger.trace(message, p0, p1, p2, p3);
         }
     }
 
@@ -552,7 +552,7 @@ public class LoggerWrapper {
 
     public void warn(Object message) {
         if (logger != null) {
-        logger.warn(message);
+            logger.warn(message);
         }
 
     }
@@ -749,4 +749,5 @@ public class LoggerWrapper {
             logger.debug(message, p0, p1, p2);
         }
     }
+
 }

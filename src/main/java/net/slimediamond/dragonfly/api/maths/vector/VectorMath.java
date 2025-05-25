@@ -99,4 +99,5 @@ public class VectorMath {
     public static Vector2i getCenter(Vector2i pos1, Vector2i pos2) {
         return getCenter(pos1.asVector2d(), pos2.asVector2d()).asVector2i();
     }
+
 }

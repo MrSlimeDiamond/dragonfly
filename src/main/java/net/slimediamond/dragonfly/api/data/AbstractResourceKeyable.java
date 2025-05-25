@@ -4,6 +4,7 @@ import net.slimediamond.data.identification.ResourceKey;
 import net.slimediamond.data.identification.ResourceKeyable;
 
 public abstract class AbstractResourceKeyable implements ResourceKeyable {
+
     private final ResourceKey resourceKey;
 
     public AbstractResourceKeyable(ResourceKey resourceKey) {
@@ -14,4 +15,5 @@ public abstract class AbstractResourceKeyable implements ResourceKeyable {
     public ResourceKey getResourceKey() {
         return resourceKey;
     }
+
 }

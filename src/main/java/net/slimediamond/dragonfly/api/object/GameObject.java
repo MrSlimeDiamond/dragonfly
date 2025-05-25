@@ -12,8 +12,8 @@ import net.slimediamond.dragonfly.api.render.Renderable;
  * An object within the game, which has a position in the 2D space
  *
  * <p>A GameObject is the base for most other things in the game, they are queued
- * into {@link net.slimediamond.dragonfly.api.DragonflyEngine#update()} and then rendered
- * with {@link net.slimediamond.dragonfly.api.DragonflyEngine#render()}</p>
+ * into {@link net.slimediamond.dragonfly.api.DragonflyEngine#update()} and then rendered with
+ * {@link net.slimediamond.dragonfly.api.DragonflyEngine#render()}</p>
  *
  * <p>Game objects are data holders, which means they can be
  * offered {@link net.slimediamond.data.Key}s for which data may be stored.</p>
@@ -48,6 +48,7 @@ import net.slimediamond.dragonfly.api.render.Renderable;
  * @see AbstractGameObject
  */
 public interface GameObject extends DataHolder, TextureHolder, DragonflyListener, Renderable, PositionHolder {
+
     /**
      * Spawn this game object
      */
@@ -95,4 +96,5 @@ public interface GameObject extends DataHolder, TextureHolder, DragonflyListener
      * @return Game object size
      */
     Vector2i getSize();
+
 }

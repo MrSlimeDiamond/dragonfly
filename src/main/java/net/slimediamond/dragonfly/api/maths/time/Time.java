@@ -1,14 +1,14 @@
 package net.slimediamond.dragonfly.api.maths.time;
 
 /**
- * An immutable reference to a duration of time, allows conversion to
- * lots of different time units, such as seconds, milliseconds, etc.
+ * An immutable reference to a duration of time, allows conversion to lots of different time units, such as seconds, milliseconds, etc.
  *
  * @see #ofNanos(long)
  * @see #ofMillis(long)
  * @see #ofSeconds(double)
  */
 public class Time {
+
     private final long nanos;
 
     private Time(long nanos) {
@@ -47,4 +47,5 @@ public class Time {
     public String toString() {
         return String.valueOf(getNanos());
     }
+
 }

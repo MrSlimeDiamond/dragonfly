@@ -4,12 +4,12 @@ import net.slimediamond.dragonfly.api.DragonflyEngine;
 import net.slimediamond.dragonfly.api.maths.vector.Vector2i;
 
 /**
- * The context for rendering an object, providing {@link Graphics},
- * and a position to render at.
+ * The context for rendering an object, providing {@link Graphics}, and a position to render at.
  *
  * @see Renderable
  */
 public interface RenderContext {
+
     /**
      * Get the engine we are rendering for
      *
@@ -30,4 +30,5 @@ public interface RenderContext {
      * @return Frame render position
      */
     Vector2i getRenderPosition();
+
 }

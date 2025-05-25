@@ -4,16 +4,15 @@ import net.slimediamond.dragonfly.api.maths.vector.Vector2d;
 import net.slimediamond.dragonfly.api.maths.vector.Vector2i;
 
 /**
- * Util class for translating in-game coordinates into coordinates
- * for the renderer to use, which is a different system.
+ * Util class for translating in-game coordinates into coordinates for the renderer to use, which is a different system.
  *
  * @see Vector2d
  * @see Vector2i
  */
 public class PositionTranslator {
+
     /**
-     * Convert an in-game position to a position that can be used
-     * by the renderer.
+     * Convert an in-game position to a position that can be used by the renderer.
      *
      * <p>The exact formula for this is:</p>
      * <pre>{@code
@@ -28,7 +27,6 @@ public class PositionTranslator {
      * @param ingame In-game coordinates
      * @param camera The camera from which the scale and camera position is retrieved
      * @return Translated coordinates for use in rendering frames
-     *
      * @see #getIngamePosition(Vector2i, Camera)
      */
     public static Vector2i getFramePosition(Vector2d ingame, Camera camera) {
@@ -52,15 +50,15 @@ public class PositionTranslator {
      * the scale set by the {@link Camera}</p>
      *
      * @param framePos The coordinates in the frame
-     * @param camera The camera from which the scale and camera position is retrieved
+     * @param camera   The camera from which the scale and camera position is retrieved
      * @return Translated coordinates for use in-game
-     *
      * @see #getFramePosition(Vector2d, Camera)
      */
     public static Vector2d getIngamePosition(Vector2i framePos, Camera camera) {
         return Vector2d.of(
-                ((double)framePos.getX() / camera.getScale().getX()) + camera.getPosition().getX(),
-                ((double)framePos.getY() / camera.getScale().getY()) + camera.getPosition().getY()
+                ((double) framePos.getX() / camera.getScale().getX()) + camera.getPosition().getX(),
+                ((double) framePos.getY() / camera.getScale().getY()) + camera.getPosition().getY()
         );
     }
+
 }

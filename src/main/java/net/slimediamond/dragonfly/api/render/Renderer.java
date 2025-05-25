@@ -13,13 +13,14 @@ import net.slimediamond.dragonfly.api.logger.LoggerWrapper;
  * @see net.slimediamond.dragonfly.api.EngineConfiguration
  */
 public interface Renderer {
+
     /**
      * Initialize the renderer, and create the game window
      *
-     * @param title The title of the game window <br>
-     *              <strong>Note:</strong> This will have the renderer's name
-     *              suffixed (e.g. <code> - OpenGL</code>)
-     * @param width The width of the window by default
+     * @param title  The title of the game window <br>
+     *               <strong>Note:</strong> This will have the renderer's name
+     *               suffixed (e.g. <code> - OpenGL</code>)
+     * @param width  The width of the window by default
      * @param height The height of the window by default
      */
     void init(String title, int width, int height);
@@ -64,7 +65,6 @@ public interface Renderer {
      * Create a graphics backend
      *
      * @return Graphics
-     *
      * @see Renderable
      */
     Graphics createGraphics();

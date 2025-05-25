@@ -12,6 +12,7 @@ import org.apache.logging.log4j.util.MessageSupplier;
 import org.apache.logging.log4j.util.Supplier;
 
 public class Log4jLogger implements Logger {
+
     private final org.apache.logging.log4j.Logger logger;
 
     public Log4jLogger(org.apache.logging.log4j.Logger logger) {
@@ -178,11 +179,13 @@ public class Log4jLogger implements Logger {
         logger.debug(marker, message, p0, p1, p2, p3, p4, p5, p6, p7);
     }
 
-    public void debug(Marker marker, String message, Object p0, Object p1, Object p2, Object p3, Object p4, Object p5, Object p6, Object p7, Object p8) {
+    public void debug(Marker marker, String message, Object p0, Object p1, Object p2, Object p3, Object p4, Object p5, Object p6, Object p7,
+            Object p8) {
         logger.debug(marker, message, p0, p1, p2, p3, p4, p5, p6, p7, p8);
     }
 
-    public void debug(Marker marker, String message, Object p0, Object p1, Object p2, Object p3, Object p4, Object p5, Object p6, Object p7, Object p8, Object p9) {
+    public void debug(Marker marker, String message, Object p0, Object p1, Object p2, Object p3, Object p4, Object p5, Object p6, Object p7,
+            Object p8, Object p9) {
         logger.debug(marker, message, p0, p1, p2, p3, p4, p5, p6, p7, p8, p9);
     }
 
@@ -399,11 +402,13 @@ public class Log4jLogger implements Logger {
         logger.error(marker, message, p0, p1, p2, p3, p4, p5, p6, p7);
     }
 
-    public void error(Marker marker, String message, Object p0, Object p1, Object p2, Object p3, Object p4, Object p5, Object p6, Object p7, Object p8) {
+    public void error(Marker marker, String message, Object p0, Object p1, Object p2, Object p3, Object p4, Object p5, Object p6, Object p7,
+            Object p8) {
         logger.error(marker, message, p0, p1, p2, p3, p4, p5, p6, p7, p8);
     }
 
-    public void error(Marker marker, String message, Object p0, Object p1, Object p2, Object p3, Object p4, Object p5, Object p6, Object p7, Object p8, Object p9) {
+    public void error(Marker marker, String message, Object p0, Object p1, Object p2, Object p3, Object p4, Object p5, Object p6, Object p7,
+            Object p8, Object p9) {
         logger.error(marker, message, p0, p1, p2, p3, p4, p5, p6, p7, p8, p9);
     }
 
@@ -620,11 +625,13 @@ public class Log4jLogger implements Logger {
         logger.fatal(marker, message, p0, p1, p2, p3, p4, p5, p6, p7);
     }
 
-    public void fatal(Marker marker, String message, Object p0, Object p1, Object p2, Object p3, Object p4, Object p5, Object p6, Object p7, Object p8) {
+    public void fatal(Marker marker, String message, Object p0, Object p1, Object p2, Object p3, Object p4, Object p5, Object p6, Object p7,
+            Object p8) {
         logger.fatal(marker, message, p0, p1, p2, p3, p4, p5, p6, p7, p8);
     }
 
-    public void fatal(Marker marker, String message, Object p0, Object p1, Object p2, Object p3, Object p4, Object p5, Object p6, Object p7, Object p8, Object p9) {
+    public void fatal(Marker marker, String message, Object p0, Object p1, Object p2, Object p3, Object p4, Object p5, Object p6, Object p7,
+            Object p8, Object p9) {
         logger.fatal(marker, message, p0, p1, p2, p3, p4, p5, p6, p7, p8, p9);
     }
 
@@ -846,11 +853,13 @@ public class Log4jLogger implements Logger {
         logger.info(marker, message, p0, p1, p2, p3, p4, p5, p6, p7);
     }
 
-    public void info(Marker marker, String message, Object p0, Object p1, Object p2, Object p3, Object p4, Object p5, Object p6, Object p7, Object p8) {
+    public void info(Marker marker, String message, Object p0, Object p1, Object p2, Object p3, Object p4, Object p5, Object p6, Object p7,
+            Object p8) {
         logger.info(marker, message, p0, p1, p2, p3, p4, p5, p6, p7, p8);
     }
 
-    public void info(Marker marker, String message, Object p0, Object p1, Object p2, Object p3, Object p4, Object p5, Object p6, Object p7, Object p8, Object p9) {
+    public void info(Marker marker, String message, Object p0, Object p1, Object p2, Object p3, Object p4, Object p5, Object p6, Object p7, Object p8,
+            Object p9) {
         logger.info(marker, message, p0, p1, p2, p3, p4, p5, p6, p7, p8, p9);
     }
 
@@ -1106,15 +1115,18 @@ public class Log4jLogger implements Logger {
         logger.log(level, marker, message, p0, p1, p2, p3, p4, p5, p6);
     }
 
-    public void log(Level level, Marker marker, String message, Object p0, Object p1, Object p2, Object p3, Object p4, Object p5, Object p6, Object p7) {
+    public void log(Level level, Marker marker, String message, Object p0, Object p1, Object p2, Object p3, Object p4, Object p5, Object p6,
+            Object p7) {
         logger.log(level, marker, message, p0, p1, p2, p3, p4, p5, p6, p7);
     }
 
-    public void log(Level level, Marker marker, String message, Object p0, Object p1, Object p2, Object p3, Object p4, Object p5, Object p6, Object p7, Object p8) {
+    public void log(Level level, Marker marker, String message, Object p0, Object p1, Object p2, Object p3, Object p4, Object p5, Object p6,
+            Object p7, Object p8) {
         logger.log(level, marker, message, p0, p1, p2, p3, p4, p5, p6, p7, p8);
     }
 
-    public void log(Level level, Marker marker, String message, Object p0, Object p1, Object p2, Object p3, Object p4, Object p5, Object p6, Object p7, Object p8, Object p9) {
+    public void log(Level level, Marker marker, String message, Object p0, Object p1, Object p2, Object p3, Object p4, Object p5, Object p6,
+            Object p7, Object p8, Object p9) {
         logger.log(level, marker, message, p0, p1, p2, p3, p4, p5, p6, p7, p8, p9);
     }
 
@@ -1154,7 +1166,8 @@ public class Log4jLogger implements Logger {
         logger.log(level, message, p0, p1, p2, p3, p4, p5, p6, p7, p8);
     }
 
-    public void log(Level level, String message, Object p0, Object p1, Object p2, Object p3, Object p4, Object p5, Object p6, Object p7, Object p8, Object p9) {
+    public void log(Level level, String message, Object p0, Object p1, Object p2, Object p3, Object p4, Object p5, Object p6, Object p7, Object p8,
+            Object p9) {
         logger.log(level, message, p0, p1, p2, p3, p4, p5, p6, p7, p8, p9);
     }
 
@@ -1326,11 +1339,13 @@ public class Log4jLogger implements Logger {
         logger.trace(marker, message, p0, p1, p2, p3, p4, p5, p6, p7);
     }
 
-    public void trace(Marker marker, String message, Object p0, Object p1, Object p2, Object p3, Object p4, Object p5, Object p6, Object p7, Object p8) {
+    public void trace(Marker marker, String message, Object p0, Object p1, Object p2, Object p3, Object p4, Object p5, Object p6, Object p7,
+            Object p8) {
         logger.trace(marker, message, p0, p1, p2, p3, p4, p5, p6, p7, p8);
     }
 
-    public void trace(Marker marker, String message, Object p0, Object p1, Object p2, Object p3, Object p4, Object p5, Object p6, Object p7, Object p8, Object p9) {
+    public void trace(Marker marker, String message, Object p0, Object p1, Object p2, Object p3, Object p4, Object p5, Object p6, Object p7,
+            Object p8, Object p9) {
         logger.trace(marker, message, p0, p1, p2, p3, p4, p5, p6, p7, p8, p9);
     }
 
@@ -1582,11 +1597,13 @@ public class Log4jLogger implements Logger {
         logger.warn(marker, message, p0, p1, p2, p3, p4, p5, p6, p7);
     }
 
-    public void warn(Marker marker, String message, Object p0, Object p1, Object p2, Object p3, Object p4, Object p5, Object p6, Object p7, Object p8) {
+    public void warn(Marker marker, String message, Object p0, Object p1, Object p2, Object p3, Object p4, Object p5, Object p6, Object p7,
+            Object p8) {
         logger.warn(marker, message, p0, p1, p2, p3, p4, p5, p6, p7, p8);
     }
 
-    public void warn(Marker marker, String message, Object p0, Object p1, Object p2, Object p3, Object p4, Object p5, Object p6, Object p7, Object p8, Object p9) {
+    public void warn(Marker marker, String message, Object p0, Object p1, Object p2, Object p3, Object p4, Object p5, Object p6, Object p7, Object p8,
+            Object p9) {
         logger.warn(marker, message, p0, p1, p2, p3, p4, p5, p6, p7, p8, p9);
     }
 
@@ -1675,4 +1692,5 @@ public class Log4jLogger implements Logger {
     public LogBuilder atLevel(Level level) {
         return logger.atLevel(level);
     }
+
 }

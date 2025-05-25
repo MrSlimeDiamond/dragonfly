@@ -1,14 +1,14 @@
 package net.slimediamond.dragonfly.api.scheduler;
 
-import net.slimediamond.dragonfly.api.DragonflyEngine;
-
 import java.util.ArrayList;
 import java.util.List;
+import net.slimediamond.dragonfly.api.DragonflyEngine;
 
 /**
  * The main client thread, which the game loop is run on
  */
 public class ClientThread extends Thread {
+
     private final DragonflyEngine engine;
     private final List<Runnable> queue = new ArrayList<>();
     private boolean running = false;
@@ -98,9 +98,11 @@ public class ClientThread extends Thread {
      * <strong>Warning:</strong>
      * Probably don't call this!
      * </p>
+     *
      * @param running The status to set the game loop to
      */
     public void setRunning(boolean running) {
         this.running = running;
     }
+
 }

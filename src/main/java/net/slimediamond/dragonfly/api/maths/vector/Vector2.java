@@ -6,6 +6,7 @@ package net.slimediamond.dragonfly.api.maths.vector;
  * @param <T> Number type of the vector
  */
 public interface Vector2<T extends Number, Z extends Vector2<T, Z>> {
+
     /**
      * Get the X coordinate of this vector
      *
@@ -71,4 +72,5 @@ public interface Vector2<T extends Number, Z extends Vector2<T, Z>> {
         double dy = other.getY().doubleValue() - getY().doubleValue();
         return Math.sqrt(dx * dx + dy * dy);
     }
+
 }

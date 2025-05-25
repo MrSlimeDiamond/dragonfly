@@ -53,6 +53,11 @@ import net.slimediamond.dragonfly.api.render.Renderer;
  * @see DragonflyEngine
  */
 public interface EngineConfiguration {
+
+    static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * The title of the window
      *
@@ -95,11 +100,8 @@ public interface EngineConfiguration {
      */
     InputHandler getInputHandler();
 
-    static Builder builder() {
-        return new Builder();
-    }
-
     class Builder {
+
         private String title = "Dragonfly engine";
         private int defaultWidth = 680;
         private int defaultHeight = 480;
@@ -170,5 +172,7 @@ public interface EngineConfiguration {
                 }
             };
         }
+
     }
+
 }

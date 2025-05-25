@@ -1,18 +1,18 @@
 package net.slimediamond.dragonfly.input.glfw;
 
+import static org.lwjgl.glfw.GLFW.GLFW_PRESS;
+import static org.lwjgl.glfw.GLFW.GLFW_RELEASE;
+import static org.lwjgl.glfw.GLFW.glfwSetKeyCallback;
+
+import java.util.HashSet;
+import java.util.Set;
 import net.slimediamond.dragonfly.api.DragonflyEngine;
 import net.slimediamond.dragonfly.api.input.InputHandler;
 import net.slimediamond.dragonfly.render.opengl.OpenGLRenderer;
 import org.lwjgl.glfw.GLFWKeyCallback;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import static org.lwjgl.glfw.GLFW.GLFW_PRESS;
-import static org.lwjgl.glfw.GLFW.GLFW_RELEASE;
-import static org.lwjgl.glfw.GLFW.glfwSetKeyCallback;
-
 public class GlfwInputHandler extends InputHandler {
+
     private final Set<Integer> heldKeys = new HashSet<>();
 
     @Override
@@ -35,4 +35,5 @@ public class GlfwInputHandler extends InputHandler {
             });
         }
     }
+
 }

@@ -1,5 +1,11 @@
 package net.slimediamond.dragonfly.api;
 
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+import java.util.concurrent.ConcurrentLinkedQueue;
 import net.slimediamond.data.registry.BasicRegistry;
 import net.slimediamond.data.registry.Registry;
 import net.slimediamond.dragonfly.api.entity.Entity;
@@ -24,21 +30,14 @@ import net.slimediamond.dragonfly.api.render.Renderable;
 import net.slimediamond.dragonfly.api.render.Renderer;
 import net.slimediamond.dragonfly.api.scheduler.Scheduler;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
-import java.util.concurrent.ConcurrentLinkedQueue;
-
 /**
  * The engine! Vroom vroom.
  *
  * <p>Dragonfly is a game engine for Java.</p>
  *
  * <p>The centralized engine instance, which almost everything goes through
- * in a game, such as spawning {@link GameObject} instances, spawning {@link Entity} instances,
- * rendering {@link Renderable} instances, and the managers for the aforementioned.</p>
+ * in a game, such as spawning {@link GameObject} instances, spawning {@link Entity} instances, rendering {@link Renderable} instances, and the
+ * managers for the aforementioned.</p>
  *
  * <h2>Constructing an engine instance</h2>
  * <p>Constructing an engine requires a {@link EngineConfiguration},
@@ -86,6 +85,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
  * @see Scheduler
  */
 public class DragonflyEngine {
+
     private final EngineConfiguration configuration;
     private final List<Registry<?>> registries = new LinkedList<>();
     private final List<AbstractManager<?>> managers = new LinkedList<>();
@@ -122,7 +122,9 @@ public class DragonflyEngine {
      * @return Whether the engine was initialized or not
      */
     public boolean initialize() {
-        if (initialized) return false;
+        if (initialized) {
+            return false;
+        }
 
         scheduler = new Scheduler(this);
 
@@ -306,8 +308,8 @@ public class DragonflyEngine {
      * Create a {@link GameObject} and submit it for rendering later
      *
      * @param gameObjectType Game object type to create
+     * @param <T>            Type of the game object
      * @return The created game object
-     * @param <T> Type of the game object
      */
     @SuppressWarnings("unchecked")
     public <T extends GameObject> T createGameObject(GameObjectType gameObjectType) {
@@ -318,7 +320,7 @@ public class DragonflyEngine {
 
         logger.debug("Creating object '{}'", gameObjectType.getResourceKey().toString());
 
-        T gameObject = (T)creator.create();
+        T gameObject = (T) creator.create();
 
         submitGameObject(gameObject);
 
@@ -329,14 +331,14 @@ public class DragonflyEngine {
      * Create a {@link Entity} and submit it for rendering later
      *
      * @param entityType The entity type to create
+     * @param <T>        The type of entity
      * @return The created entity
-     * @param <T> The type of entity
      */
     @SuppressWarnings("unchecked")
     public <T extends Entity> T createEntity(EntityType entityType) {
         ObjectCreator<? extends Entity> creator = entityType.getCreator();
 
-        T entity = (T)creator.create();
+        T entity = (T) creator.create();
 
         scheduler.getClientThread().queue(() -> {
             logger.debug("Adding entity: '{}'", entity.getEntityType().getResourceKey().toString());
@@ -357,8 +359,7 @@ public class DragonflyEngine {
     }
 
     /**
-     * Get the amount of time that has passed since the last {@link #update()},
-     * in <b>nanoseconds</b>.
+     * Get the amount of time that has passed since the last {@link #update()}, in <b>nanoseconds</b>.
      *
      * @return Time since last frame update
      */
@@ -402,4 +403,5 @@ public class DragonflyEngine {
     public void addRenderListener(Runnable runnable) {
         renderRuns.add(runnable);
     }
+
 }

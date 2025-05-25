@@ -1,12 +1,11 @@
 package net.slimediamond.dragonfly.api.object.text;
 
+import java.awt.Font;
+import javax.swing.JLabel;
 import net.slimediamond.dragonfly.api.maths.vector.Vector2i;
 import net.slimediamond.dragonfly.api.render.Colors;
 import net.slimediamond.dragonfly.api.render.RenderContext;
 import net.slimediamond.dragonfly.api.render.Renderable;
-
-import javax.swing.*;
-import java.awt.*;
 
 /**
  * Text which can be rendered ingame
@@ -25,6 +24,7 @@ import java.awt.*;
  * @see #of(String content)
  */
 public class Text implements Renderable {
+
     private String content;
     private Vector2i position = Vector2i.of(5, 10);
 
@@ -86,4 +86,5 @@ public class Text implements Renderable {
     public String toString() {
         return "Text{content=" + content + ",position=" + position + "}";
     }
+
 }

@@ -9,6 +9,7 @@ import net.slimediamond.dragonfly.api.DragonflyEngine;
  * @see #getAsyncScheduler()
  */
 public class Scheduler {
+
     private final ClientThread clientThread;
     private final AsyncScheduler asyncScheduler;
 
@@ -36,4 +37,5 @@ public class Scheduler {
     public AsyncScheduler getAsyncScheduler() {
         return asyncScheduler;
     }
+
 }

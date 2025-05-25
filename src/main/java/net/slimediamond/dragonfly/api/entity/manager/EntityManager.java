@@ -1,14 +1,14 @@
 package net.slimediamond.dragonfly.api.entity.manager;
 
+import java.lang.reflect.InvocationTargetException;
 import net.slimediamond.dragonfly.api.DragonflyEngine;
 import net.slimediamond.dragonfly.api.entity.Entity;
 import net.slimediamond.dragonfly.api.entity.EntityType;
 import net.slimediamond.dragonfly.api.manager.AbstractManager;
 import net.slimediamond.dragonfly.api.object.manager.GameObjectManager;
 
-import java.lang.reflect.InvocationTargetException;
-
 public class EntityManager extends AbstractManager<Entity> {
+
     private final GameObjectManager gameObjectManager;
     private final DragonflyEngine engine;
 
@@ -36,11 +36,12 @@ public class EntityManager extends AbstractManager<Entity> {
     @SuppressWarnings("unchecked")
     public <T extends Entity> T spawnEntity(EntityType entityType) {
         try {
-            T entity = (T)getEntityClass(entityType).getConstructor(DragonflyEngine.class).newInstance(engine);
+            T entity = (T) getEntityClass(entityType).getConstructor(DragonflyEngine.class).newInstance(engine);
             add(entity);
             return entity;
         } catch (NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
             throw new RuntimeException(e);
         }
     }
+
 }

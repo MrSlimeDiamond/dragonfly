@@ -1,14 +1,5 @@
 package net.slimediamond.dragonfly.render.opengl;
 
-import net.slimediamond.dragonfly.api.logger.LoggerWrapper;
-import net.slimediamond.dragonfly.api.render.Graphics;
-import net.slimediamond.dragonfly.api.render.Renderer;
-import org.lwjgl.glfw.GLFWErrorCallback;
-import org.lwjgl.opengl.GL;
-import org.lwjgl.system.MemoryStack;
-
-import java.nio.IntBuffer;
-
 import static org.lwjgl.glfw.Callbacks.glfwFreeCallbacks;
 import static org.lwjgl.glfw.GLFW.GLFW_RESIZABLE;
 import static org.lwjgl.glfw.GLFW.GLFW_TRUE;
@@ -44,12 +35,21 @@ import static org.lwjgl.opengl.GL11.glViewport;
 import static org.lwjgl.system.MemoryStack.stackPush;
 import static org.lwjgl.system.MemoryUtil.NULL;
 
+import java.nio.IntBuffer;
+import net.slimediamond.dragonfly.api.logger.LoggerWrapper;
+import net.slimediamond.dragonfly.api.render.Graphics;
+import net.slimediamond.dragonfly.api.render.Renderer;
+import org.lwjgl.glfw.GLFWErrorCallback;
+import org.lwjgl.opengl.GL;
+import org.lwjgl.system.MemoryStack;
+
 /**
  * The OpenGL renderer implementation for the Dragonfly engine
  */
 // I barely know what this does tbh, but it's mostly copied from: https://www.lwjgl.org/guide
 // as of April 13, 2025
 public class OpenGLRenderer implements Renderer {
+
     private long window;
 
     private IntBuffer pWidth;
@@ -193,4 +193,5 @@ public class OpenGLRenderer implements Renderer {
     public long getWindow() {
         return window;
     }
+
 }

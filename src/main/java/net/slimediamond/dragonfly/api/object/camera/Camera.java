@@ -12,6 +12,7 @@ import net.slimediamond.dragonfly.api.object.GameObject;
  * <p><i>TODO: Camera follow</i></p>
  */
 public class Camera {
+
     private final DragonflyEngine engine;
     private Vector2d position;
     private GameObject following;
@@ -55,15 +56,6 @@ public class Camera {
     }
 
     /**
-     * Set a {@link GameObject} for this camera to follow
-     *
-     * @param following The object to follow
-     */
-    public void setFollowing(GameObject following) {
-        this.following = following;
-    }
-
-    /**
      * Stop following the current {@link GameObject}
      */
     public void stopFollowing() {
@@ -80,8 +72,16 @@ public class Camera {
     }
 
     /**
-     * Get the scale of this, for calculating on-screen coordinates
-     * for frames used by this camera.
+     * Set a {@link GameObject} for this camera to follow
+     *
+     * @param following The object to follow
+     */
+    public void setFollowing(GameObject following) {
+        this.following = following;
+    }
+
+    /**
+     * Get the scale of this, for calculating on-screen coordinates for frames used by this camera.
      *
      * @return Camera scale
      */
@@ -98,8 +98,7 @@ public class Camera {
     }
 
     /**
-     * Get the center position (in-game coordinates) of the
-     * current view of the camera at this current moment.
+     * Get the center position (in-game coordinates) of the current view of the camera at this current moment.
      *
      * @return Center coordinates
      */
@@ -115,4 +114,5 @@ public class Camera {
 
         return PositionTranslator.getIngamePosition(screenCenter, this);
     }
+
 }

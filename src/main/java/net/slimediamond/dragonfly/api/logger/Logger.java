@@ -41,11 +41,15 @@ public interface Logger {
 
     void debug(String message, Object p0, Object p1, Object p2, Object p3, Object p4, Object p5, Object p6, Object p7, Object p8, Object p9);
 
-    /** @deprecated */
+    /**
+     * @deprecated
+     */
     @Deprecated
     void entry();
 
-    /** @deprecated */
+    /**
+     * @deprecated
+     */
     @Deprecated
     void entry(Object... params);
 
@@ -83,11 +87,15 @@ public interface Logger {
 
     void error(String message, Object p0, Object p1, Object p2, Object p3, Object p4, Object p5, Object p6, Object p7, Object p8, Object p9);
 
-    /** @deprecated */
+    /**
+     * @deprecated
+     */
     @Deprecated
     void exit();
 
-    /** @deprecated */
+    /**
+     * @deprecated
+     */
     @Deprecated
     <R> R exit(R result);
 
@@ -140,6 +148,7 @@ public interface Logger {
     void info(String message, Object... params);
 
     void info(String message, Throwable throwable);
+
     void info(String message, Object p0);
 
     void info(String message, Object p0, Object p1);
@@ -247,4 +256,5 @@ public interface Logger {
     void warn(String message, Object p0, Object p1, Object p2, Object p3, Object p4, Object p5, Object p6, Object p7, Object p8);
 
     void warn(String message, Object p0, Object p1, Object p2, Object p3, Object p4, Object p5, Object p6, Object p7, Object p8, Object p9);
+
 }

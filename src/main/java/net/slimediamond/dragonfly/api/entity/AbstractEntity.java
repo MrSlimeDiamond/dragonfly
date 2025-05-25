@@ -1,12 +1,11 @@
 package net.slimediamond.dragonfly.api.entity;
 
+import java.util.ArrayList;
+import java.util.List;
 import net.slimediamond.dragonfly.api.DragonflyEngine;
 import net.slimediamond.dragonfly.api.maths.vector.Vector2d;
 import net.slimediamond.dragonfly.api.object.AbstractGameObject;
 import net.slimediamond.dragonfly.api.object.DragonflyGameObjectTypes;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * A basic implementation of an entity
@@ -14,6 +13,7 @@ import java.util.List;
  * <p>Creating an abstract entity requires some kind of {@link EntityType} reference. This can be done via a static class.</p>
  */
 public abstract class AbstractEntity extends AbstractGameObject implements Entity {
+
     private final EntityType entityType;
     private final List<Entity> attachedEntities = new ArrayList<>();
 
@@ -52,4 +52,5 @@ public abstract class AbstractEntity extends AbstractGameObject implements Entit
     public boolean isAttached(Entity entity) {
         return attachedEntities.contains(entity);
     }
+
 }

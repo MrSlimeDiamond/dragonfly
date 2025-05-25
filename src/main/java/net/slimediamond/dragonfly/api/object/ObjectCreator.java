@@ -8,6 +8,18 @@ import java.util.function.Supplier;
  * @param <T> The type to create
  */
 public interface ObjectCreator<T> {
+
+    /**
+     * The {@link ObjectCreator} factory
+     *
+     * @param supplier Supplier for objects to be created with
+     * @param <Z>      Type of object creator
+     * @return The resultant object creator
+     */
+    static <Z> ObjectCreator<Z> of(Supplier<Z> supplier) {
+        return supplier::get;
+    }
+
     /**
      * Create an instance of this object
      *
@@ -15,14 +27,4 @@ public interface ObjectCreator<T> {
      */
     T create();
 
-    /**
-     * The {@link ObjectCreator} factory
-     *
-     * @param supplier Supplier for objects to be created with
-     * @return The resultant object creator
-     * @param <Z> Type of object creator
-     */
-    static <Z> ObjectCreator<Z> of(Supplier<Z> supplier) {
-        return supplier::get;
-    }
 }

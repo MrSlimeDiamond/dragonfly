@@ -16,6 +16,7 @@ import java.net.URL;
  * @see #asset(String)
  */
 public class ResourcePath {
+
     private final String path;
 
     private ResourcePath(String path) {
@@ -59,4 +60,5 @@ public class ResourcePath {
     public URL getUrl() {
         return getClass().getResource(path);
     }
+
 }

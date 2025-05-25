@@ -7,6 +7,7 @@ import java.util.List;
  * The asynchronous scheduler for making new threads and running tasks on them.
  */
 public class AsyncScheduler {
+
     private final List<Thread> threads = new LinkedList<>();
 
     /**
@@ -31,4 +32,5 @@ public class AsyncScheduler {
 
         thread.start();
     }
+
 }

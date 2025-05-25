@@ -6,5 +6,8 @@ package net.slimediamond.dragonfly.api.event.listener;
  * @see net.slimediamond.dragonfly.api.event.Event
  */
 public interface DragonflyListener {
-    default void onUpdate() {}
+
+    default void onUpdate() {
+    }
+
 }

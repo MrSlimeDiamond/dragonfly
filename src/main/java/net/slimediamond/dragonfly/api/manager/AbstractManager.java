@@ -9,6 +9,7 @@ import java.util.List;
  * @param <T> The type to manage
  */
 public class AbstractManager<T> {
+
     private final List<T> objects = new ArrayList<>();
 
     public List<T> getAll() {
@@ -22,4 +23,5 @@ public class AbstractManager<T> {
     public void remove(T object) {
         objects.remove(object);
     }
+
 }

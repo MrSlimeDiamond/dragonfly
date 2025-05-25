@@ -4,6 +4,7 @@ import net.slimediamond.dragonfly.api.DragonflyEngine;
 import net.slimediamond.dragonfly.api.maths.vector.Vector2i;
 
 public class DragonflyRenderContext implements RenderContext {
+
     private final DragonflyEngine engine;
     private final Graphics graphics;
     private final Vector2i renderPosition;
@@ -28,4 +29,5 @@ public class DragonflyRenderContext implements RenderContext {
     public Vector2i getRenderPosition() {
         return renderPosition;
     }
+
 }

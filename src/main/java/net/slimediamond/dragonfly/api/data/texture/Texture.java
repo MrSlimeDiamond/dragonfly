@@ -1,10 +1,9 @@
 package net.slimediamond.dragonfly.api.data.texture;
 
-import net.slimediamond.dragonfly.api.data.ResourcePath;
-
-import javax.imageio.ImageIO;
-import java.awt.*;
+import java.awt.Image;
 import java.io.IOException;
+import javax.imageio.ImageIO;
+import net.slimediamond.dragonfly.api.data.ResourcePath;
 
 /**
  * A texture which can be attached to something, for it to be rendered
@@ -13,6 +12,11 @@ import java.io.IOException;
  * @see TextureHolder
  */
 public interface Texture {
+
+    static Texture withPath(ResourcePath resourcePath) {
+        return () -> resourcePath;
+    }
+
     /**
      * Get the resource path for this texture
      *
@@ -33,7 +37,4 @@ public interface Texture {
         }
     }
 
-    static Texture withPath(ResourcePath resourcePath) {
-        return () -> resourcePath;
-    }
 }

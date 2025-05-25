@@ -1,5 +1,6 @@
 package net.slimediamond.dragonfly.api.object;
 
+import java.util.Objects;
 import net.slimediamond.dragonfly.api.DragonflyEngine;
 import net.slimediamond.dragonfly.api.maths.vector.Vector2d;
 import net.slimediamond.dragonfly.api.maths.vector.Vector2i;
@@ -8,12 +9,11 @@ import net.slimediamond.dragonfly.api.object.camera.PositionTranslator;
 import net.slimediamond.dragonfly.api.render.Colors;
 import net.slimediamond.dragonfly.api.render.RenderContext;
 
-import java.util.Objects;
-
 /**
  * A game object implementation
  */
 public abstract class AbstractGameObject implements GameObject {
+
     private final GameObjectType type;
     private final DragonflyEngine engine;
     protected Vector2d position;
@@ -58,7 +58,6 @@ public abstract class AbstractGameObject implements GameObject {
         int sizeX = (int) (getSize().getX() * camera.getScale().getX());
         int sizeY = (int) (getSize().getY() * camera.getScale().getY());
 
-
         if (getTexture() == null) {
             context.getGraphics().fillRect(screenPos.getX(), screenPos.getY(), sizeX, sizeY, Colors.BLUE);
         } else {
@@ -79,4 +78,5 @@ public abstract class AbstractGameObject implements GameObject {
     public Vector2i getRenderPosition() {
         return PositionTranslator.getFramePosition(getPosition(), engine.getCamera());
     }
+
 }

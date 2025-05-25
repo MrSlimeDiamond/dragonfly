@@ -1,20 +1,23 @@
 package net.slimediamond.dragonfly.api.maths.vector;
 
 /**
- * A vector in 2D space representing two coordinates, which has
- * an integer value
+ * A vector in 2D space representing two coordinates, which has an integer value
  *
  * @see Vector2d
  */
 public class Vector2i implements Vector2<Integer, Vector2i> {
-    private final int x;
-    private final int y;
 
     public static final Vector2i ZERO = Vector2i.of(0, 0);
+    private final int x;
+    private final int y;
 
     private Vector2i(int x, int y) {
         this.x = x;
         this.y = y;
+    }
+
+    public static Vector2i of(int x, int y) {
+        return new Vector2i(x, y);
     }
 
     @Override
@@ -37,10 +40,6 @@ public class Vector2i implements Vector2<Integer, Vector2i> {
         return Vector2i.of(multiplier.getX() * getX(), multiplier.getY() * multiplier.getY());
     }
 
-    public static Vector2i of(int x, int y) {
-        return new Vector2i(x, y);
-    }
-
     public Vector2d asVector2d() {
         return Vector2d.of(x, y);
     }
@@ -54,4 +53,5 @@ public class Vector2i implements Vector2<Integer, Vector2i> {
     public double dot(Vector2i other) {
         return getX() * other.getX() + getY() * other.getY();
     }
+
 }

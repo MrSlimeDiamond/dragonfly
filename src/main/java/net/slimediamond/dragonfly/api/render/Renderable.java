@@ -10,8 +10,7 @@ import net.slimediamond.dragonfly.api.maths.vector.Vector2i;
  * {@link DragonflyEngine#addRenderable(Renderable)} to queue one.</p>
  *
  * <p>The position at which a renderable will be rendered is
- * determined via {@link #getRenderPosition()}, which can be overridden
- * in the inheriting class</p>
+ * determined via {@link #getRenderPosition()}, which can be overridden in the inheriting class</p>
  *
  * <p>Here is an example Renderable implementation:</p>
  * <pre>{@code
@@ -37,6 +36,7 @@ import net.slimediamond.dragonfly.api.maths.vector.Vector2i;
  * @see RenderContext
  */
 public interface Renderable {
+
     /**
      * Render this renderable
      *
@@ -52,4 +52,5 @@ public interface Renderable {
     default Vector2i getRenderPosition() {
         return Vector2i.of(0, 0);
     }
+
 }

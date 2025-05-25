@@ -1,10 +1,9 @@
 package net.slimediamond.dragonfly.api.entity;
 
+import java.util.function.Supplier;
 import net.slimediamond.data.identification.ResourceKey;
 import net.slimediamond.dragonfly.api.data.AbstractResourceKeyable;
 import net.slimediamond.dragonfly.api.object.ObjectCreator;
-
-import java.util.function.Supplier;
 
 /**
  * An entity type, holding a resource key for identification
@@ -15,6 +14,7 @@ import java.util.function.Supplier;
  * }</pre>
  */
 public class EntityType extends AbstractResourceKeyable {
+
     private final Supplier<? extends Entity> supplier;
 
     public EntityType(ResourceKey resourceKey, Supplier<? extends Entity> supplier) {
@@ -25,4 +25,5 @@ public class EntityType extends AbstractResourceKeyable {
     public ObjectCreator<? extends Entity> getCreator() {
         return ObjectCreator.of(supplier);
     }
+
 }
