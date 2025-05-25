@@ -44,12 +44,12 @@ import java.util.concurrent.ConcurrentLinkedQueue;
  * <p>Constructing an engine requires a {@link EngineConfiguration},
  * using {@link EngineConfiguration#builder()} is recommended but technically optional.</p>
  *
- * <pre>
+ * <pre>{@code
  * DragonflyEngine engine = new DragonflyEngine(EngineConfiguration.builder()
  *     .title("My game!")
  *     .build()
  * );
- * </pre>
+ * }</pre>
  *
  * <p>Theoretically the above builder needs no arguments, the default parameters are:</p>
  * <ul>

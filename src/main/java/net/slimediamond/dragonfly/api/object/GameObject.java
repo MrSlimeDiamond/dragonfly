@@ -22,7 +22,7 @@ import net.slimediamond.dragonfly.api.render.Renderable;
  * {@link net.slimediamond.dragonfly.api.DragonflyEngine#createGameObject(GameObjectType)} method.</p>
  *
  * <p>The most basic of game objects can easily be created with:</p>
- * <pre>
+ * <pre>{@code
  * public class MyGameObjectTypes {
  *     public static final GameObjectType MY_GAME_OBJECT = new GameObjectType(ResourceKey.of("my_game", "my_object"), SomeGameObject::new);
  * }
@@ -39,7 +39,7 @@ import net.slimediamond.dragonfly.api.render.Renderable;
  *         // ...
  *     }
  * }
- * </pre>
+ * }</pre>
  *
  * @see net.slimediamond.dragonfly.api.DragonflyEngine#createGameObject(GameObjectType)
  * @see net.slimediamond.dragonfly.api.object.manager.GameObjectManager

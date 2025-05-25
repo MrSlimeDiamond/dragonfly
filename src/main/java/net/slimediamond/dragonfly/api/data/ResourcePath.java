@@ -6,11 +6,11 @@ import java.net.URL;
  * An immutable reference to a resource location (in <code>src/resources</code>)
  *
  * <p>Usage:</p>
- * <pre>
+ * <pre>{@code
  * ResourcePath resourcePath = ResourcePath.of("path/to/some/file.ext");
  * // or for an asset
  * ResourcePath resourcePath = ResourcePath.asset("something.png");
- * </pre>
+ * }</pre>
  *
  * @see #of(String)
  * @see #asset(String)

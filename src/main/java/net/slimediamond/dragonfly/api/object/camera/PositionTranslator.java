@@ -16,10 +16,10 @@ public class PositionTranslator {
      * by the renderer.
      *
      * <p>The exact formula for this is:</p>
-     * <pre>
+     * <pre>{@code
      * frameX = (gameX - cameraX) * scaleX
      * frameY = (gameY - cameraY) * scaleY
-     * </pre>
+     * }</pre>
      *
      * <p>In the above, <code>frame</code> is the coordinate in the frame,
      * <code>game</code> is the in-game coordinate, and <code>scale</code> is

@@ -3,8 +3,6 @@ package net.slimediamond.dragonfly.api.render;
 import net.slimediamond.dragonfly.api.DragonflyEngine;
 import net.slimediamond.dragonfly.api.maths.vector.Vector2i;
 
-// someone please fix `@Override` on the below javadoc
-// this "works"
 /**
  * Something which can be rendered, using the current {@link Renderer}
  *
@@ -16,9 +14,9 @@ import net.slimediamond.dragonfly.api.maths.vector.Vector2i;
  * in the inheriting class</p>
  *
  * <p>Here is an example Renderable implementation:</p>
- * <pre>
+ * <pre>{@code
  * public class ExampleRenderable implements Renderable {
-      @Override
+ *     @Override
  *     public void render(RenderContext context) {
  *         Vector2i position = context.getRenderPosition();
  *
@@ -26,12 +24,12 @@ import net.slimediamond.dragonfly.api.maths.vector.Vector2i;
  *         context.getGraphics().drawRect(position.getX(), position.getY(), 100, 100);
  *     }
  * }
- * </pre>
+ * }</pre>
  *
  * <p>The renderable may then be queued in the engine:</p>
- * <pre>
+ * <pre>{@code
  * engine.addRenderable(new ExampleRenderable());
- * </pre>
+ * }</pre>
  *
  * <p>The above will keep it rendering until it is removed</p>
  *

@@ -10,9 +10,9 @@ import java.util.function.Supplier;
  * An entity type, holding a resource key for identification
  *
  * <p>A class should be made to manage these, for example:</p>
- * <pre>
+ * <pre>{@code
  * public static final EntityType PLAYER = new EntityType(ResourceKey.of(Client.getInstance(), "player"), () -> new Player(engine));
- * </pre>
+ * }</pre>
  */
 public class EntityType extends AbstractResourceKeyable {
     private final Supplier<? extends Entity> supplier;

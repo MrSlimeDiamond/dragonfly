@@ -12,15 +12,15 @@ import java.awt.*;
  * Text which can be rendered ingame
  *
  * <p>Usage:</p>
- * <pre>
+ * <pre>{@code
  * Text text = Text.of("Hello world");
- * </pre>
+ * }</pre>
  *
  * <p>Additionally, text may have a position set on screen,
  * which can be made via a builder-style method</p>
- * <pre>
+ * <pre>{@code
  * Text.of("hello world").position(Vector2i.of(20, 20));
- * </pre>
+ * }</pre>
  *
  * @see #of(String content)
  */

@@ -42,9 +42,9 @@ public interface Vector2<T extends Number, Z extends Vector2<T, Z>> {
      * <p>This is the product of the magnitudes of the two vectors</p>
      *
      * <p>This calculation is via:</p>
-     * <pre>
+     * <pre>{@code
      * dot = (x1 * x2) + (y1 * y2)
-     * </pre>
+     * }</pre>
      *
      * @param other The other vector to compare to
      * @return The scalar dot product result
