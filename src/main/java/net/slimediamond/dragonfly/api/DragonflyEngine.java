@@ -31,6 +31,7 @@ import net.slimediamond.dragonfly.api.render.Renderable;
 import net.slimediamond.dragonfly.api.render.Renderer;
 import net.slimediamond.dragonfly.api.scheduler.Scheduler;
 import net.slimediamond.dragonfly.api.ui.console.ConsoleInterface;
+import net.slimediamond.dragonfly.api.ui.console.ConsoleInterfaceListener;
 
 /**
  * The engine! Vroom vroom.
@@ -139,6 +140,9 @@ public class DragonflyEngine {
 
         this.input = configuration.getInputHandler();
         this.consoleInterface = new ConsoleInterface(this);
+
+        eventManager.addListener(new ConsoleInterfaceListener(this));
+        addRenderable(consoleInterface);
 
         scheduler.getClientThread().queue(() -> {
             renderer.init(

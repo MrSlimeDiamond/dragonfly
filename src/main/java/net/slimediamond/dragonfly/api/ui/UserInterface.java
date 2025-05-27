@@ -117,7 +117,7 @@ public interface UserInterface extends Renderable {
         public void render(RenderContext context) {
             // TODO: Make a nice box with the title
             if (isVisible()) {
-                this.render(context);
+                this.renderUI(context);
             }
         }
 
