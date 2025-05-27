@@ -31,8 +31,13 @@ public class Vector2i implements Vector2<Integer, Vector2i> {
     }
 
     @Override
-    public Vector2i add(Vector2i adder) {
-        return Vector2i.of(adder.getX() + getX(), adder.getY() + getY());
+    public Vector2i add(Vector2i other) {
+        return Vector2i.of(other.getX() + getX(), other.getY() + getY());
+    }
+
+    @Override
+    public Vector2i subtract(Vector2i other) {
+        return Vector2i.of(getX() - other.getX(), getY() - other.getY());
     }
 
     @Override

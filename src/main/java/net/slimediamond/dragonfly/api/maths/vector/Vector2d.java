@@ -31,8 +31,13 @@ public class Vector2d implements Vector2<Double, Vector2d> {
     }
 
     @Override
-    public Vector2d add(Vector2d adder) {
-        return Vector2d.of(adder.getX() + getX(), adder.getY() + getY());
+    public Vector2d add(Vector2d other) {
+        return Vector2d.of(other.getX() + getX(), other.getY() + getY());
+    }
+
+    @Override
+    public Vector2d subtract(Vector2d other) {
+        return Vector2d.of(getX() - other.getX(), getY() - other.getY());
     }
 
     @Override

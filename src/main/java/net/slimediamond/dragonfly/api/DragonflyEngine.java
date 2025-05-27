@@ -29,6 +29,7 @@ import net.slimediamond.dragonfly.api.render.RenderContext;
 import net.slimediamond.dragonfly.api.render.Renderable;
 import net.slimediamond.dragonfly.api.render.Renderer;
 import net.slimediamond.dragonfly.api.scheduler.Scheduler;
+import net.slimediamond.dragonfly.api.ui.console.ConsoleInterface;
 
 /**
  * The engine! Vroom vroom.
@@ -105,6 +106,7 @@ public class DragonflyEngine {
     private Graphics graphics;
     private InputHandler input;
     private Camera camera;
+    private ConsoleInterface consoleInterface;
     private long deltaTime;
     private double fps;
 
@@ -126,14 +128,15 @@ public class DragonflyEngine {
             return false;
         }
 
-        scheduler = new Scheduler(this);
+        this.scheduler = new Scheduler(this);
 
-        renderer = configuration.getRenderer();
-        renderer.setLogger(logger);
+        this.renderer = configuration.getRenderer();
+        this.renderer.setLogger(logger);
 
-        graphics = renderer.createGraphics();
+        this.graphics = renderer.createGraphics();
 
-        input = configuration.getInputHandler();
+        this.input = configuration.getInputHandler();
+        this.consoleInterface = new ConsoleInterface(this);
 
         scheduler.getClientThread().queue(() -> {
             renderer.init(
@@ -157,7 +160,7 @@ public class DragonflyEngine {
         addRegistry(new BasicRegistry<>(EntityType.class));
         addRegistry(new BasicRegistry<>(GameObjectType.class));
 
-        camera = new Camera(this);
+        this.camera = new Camera(this);
 
         scheduler.getClientThread().setRunning(true);
 
@@ -244,6 +247,10 @@ public class DragonflyEngine {
 
     public boolean isInitialized() {
         return initialized;
+    }
+
+    public ConsoleInterface getConsoleInterface() {
+        return consoleInterface;
     }
 
     /**

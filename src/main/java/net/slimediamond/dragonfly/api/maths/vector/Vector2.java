@@ -24,10 +24,18 @@ public interface Vector2<T extends Number, Z extends Vector2<T, Z>> {
     /**
      * Adds two vectors together
      *
-     * @param adder Other vector to add
+     * @param other Other vector to add
      * @return Resultant addition of the two
      */
-    Z add(Z adder);
+    Z add(Z other);
+
+    /**
+     * Subtracts one vector from another
+     *
+     * @param other The vector to remove from
+     * @return Resultant subtraction of the two vectors
+     */
+    Z subtract(Z other);
 
     /**
      * Multiplies two vectors

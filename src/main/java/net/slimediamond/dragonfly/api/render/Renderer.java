@@ -1,6 +1,7 @@
 package net.slimediamond.dragonfly.api.render;
 
 import net.slimediamond.dragonfly.api.logger.LoggerWrapper;
+import net.slimediamond.dragonfly.api.maths.vector.Vector2i;
 
 /**
  * A renderer for the Dragonfly engine, displaying graphics on screen.
@@ -60,6 +61,15 @@ public interface Renderer {
      * @return Window height
      */
     int getScreenSizeY();
+
+    /**
+     * Get the size of the window
+     *
+     * @return Window size
+     */
+    default Vector2i getScreenSize() {
+        return Vector2i.of(getScreenSizeX(), getScreenSizeY());
+    }
 
     /**
      * Create a graphics backend

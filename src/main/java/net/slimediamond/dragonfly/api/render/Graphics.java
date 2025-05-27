@@ -2,6 +2,7 @@ package net.slimediamond.dragonfly.api.render;
 
 import java.awt.Font;
 import net.slimediamond.dragonfly.api.data.texture.Texture;
+import net.slimediamond.dragonfly.api.maths.vector.Vector2i;
 
 /**
  * The interface for rendering graphics on something like a {@link Renderable}
@@ -34,6 +35,27 @@ public interface Graphics {
     }
 
     /**
+     * Draw a rectangle at the given coordinates, this has a transparent inside
+     *
+     * @param position The position at which to render the rectangle
+     * @param size The size of the rectangle
+     * @param color The colour of the rectangle
+     */
+    default void drawRect(Vector2i position, Vector2i size, Color color) {
+        drawRect(position.getX(), position.getY(), size.getX(), size.getY(), color);
+    }
+
+    /**
+     * Draw a rectangle at the given coordinates, this has a transparent inside
+     *
+     * @param position The position at which to render the rectangle
+     * @param size The size of the rectangle
+     */
+    default void drawRect(Vector2i position, Vector2i size) {
+        drawRect(position, size, Colors.BLACK);
+    }
+
+    /**
      * Draw a filled rectangle at the given coordinates
      *
      * @param x      The x coordinate to draw on
@@ -54,6 +76,27 @@ public interface Graphics {
      */
     default void fillRect(int x, int y, int width, int height) {
         fillRect(x, y, width, height, Colors.BLACK);
+    }
+
+    /**
+     * Draw a filled rectangle at the given coordinates
+     *
+     * @param position The position at which to render the rectangle
+     * @param size The size of the rectangle
+     * @param color The colour of the rectangle
+     */
+    default void fillRect(Vector2i position, Vector2i size, Color color) {
+        fillRect(position.getX(), position.getY(), size.getX(), size.getY(), color);
+    }
+
+    /**
+     * Draw a filled rectangle at the given coordinates
+     *
+     * @param position The position at which to render the rectangle
+     * @param size The size of the rectangle
+     */
+    default void fillRect(Vector2i position, Vector2i size) {
+        fillRect(position, size, Colors.BLACK);
     }
 
     /**
