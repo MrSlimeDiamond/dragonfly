@@ -16,7 +16,6 @@ Dragonfly is a 2D game engine written in Java.
     * [Vectors](#vectors)
     * [Game Object Types](#game-object-types)
     * [Game Objects](#game-objects)
-    * [Entities](#entities)
 * [Getting Started](#getting-started)
     * [Player Movement](#player-movement)
 * [Engine Development](#engine-development)
@@ -57,8 +56,7 @@ Here is a visualization of the game loop:
 Every single game will have a `DragonflyEngine` instance which it creates (see the example below
 in "Getting started").
 
-This object is the one-stop-shop for doing almost everything, like spawning game objects, entities,
-handling rendering of the aforementioned, etc.
+This object is the one-stop-shop for doing almost everything, like spawning game objects, handling rendering, etc
 
 A `DragonflyEngine` instance can be created using an `EngineConfiguration`. See the builder or
 example below.
@@ -126,8 +124,6 @@ public static final GameObjectType MY_GAME_OBJECT = new GameObjectType(ResourceK
 Then you would make a `MyGameObject` class, extending `AbstractObject`, or `GameObject` if you want
 a raw implementation.
 
-The same goes for **entities**.
-
 ### Game Objects
 
 At its core, a game object is something which can be spawned and rendered ingame.
@@ -173,20 +169,6 @@ public class MyGameObject extends AbstractGameObject {
 }
 ```
 
-### Entities
-
-Entities are a form of game object, (`class Entity extends GameObject`) so they can be spawned and
-rendered in the same way.
-
-Use the following method:
-
-```java
-engine.spawnEntity(EntityTypes.MY_ENTITY);
-```
-
-Entities can also be attached to other entities, with the `Entity#attach` and `Entity#detach`
-methods.
-
 ## Getting started
 
 Create a `DragonflyEngine` instance by constructing an engine using the
@@ -225,23 +207,24 @@ public class Main {
 Here is an example `Player` class:
 
 ```java
-package net.slimediamond.game.entity;
+package net.slimediamond.game;
 
 import net.slimediamond.dragonfly.api.DragonflyEngine;
 import net.slimediamond.dragonfly.api.data.ResourcePath;
 import net.slimediamond.dragonfly.api.data.texture.Texture;
-import net.slimediamond.dragonfly.api.entity.AbstractEntity;
 import net.slimediamond.dragonfly.api.event.engine.UpdateEvent;
 import net.slimediamond.dragonfly.api.event.listener.Listener;
 import net.slimediamond.dragonfly.api.maths.vector.Vector2d;
 import net.slimediamond.dragonfly.api.maths.vector.Vector2i;
+import net.slimediamond.dragonfly.api.object.AbstractGameObject;
+import net.slimediamond.game.data.types.GameObjectTypes;
 
-public class Player extends AbstractEntity {
+public class Player extends AbstractGameObject {
     private static final float acceleration = 75f;
     private final DragonflyEngine engine;
 
     public Player(DragonflyEngine engine) {
-        super(engine, GameEntityTypes.PLAYER);
+        super(engine, GameObjectTypes.PLAYER);
         this.engine = engine;
     }
 
