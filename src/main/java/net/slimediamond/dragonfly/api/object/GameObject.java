@@ -17,6 +17,8 @@ import net.slimediamond.dragonfly.api.render.Renderable;
  * <p>Game objects are data holders, which means they can be
  * offered {@link net.slimediamond.data.Key}s for which data may be stored.</p>
  *
+ * <p>Game objects also hold textures, and have built-in rendering logic.</p>
+ *
  * <p>Creation of a game object should be done via the
  * {@link net.slimediamond.dragonfly.api.DragonflyEngine#createGameObject(GameObjectType)} method.</p>
  *
@@ -95,5 +97,31 @@ public interface GameObject extends DataHolder, TextureHolder, Renderable, Posit
      * @return Game object size
      */
     Vector2i getSize();
+
+    /**
+     * Make this game object follow a specified position holder.
+     *
+     * <p>Each game object can only have <b>one</b> thing which it's following,
+     * or otherwise <b>none</b>.</p>
+     *
+     * @param positionHolder The position holder to follow
+     * @see #stopFollowing()
+     */
+    void setFollowing(PositionHolder positionHolder);
+
+    /**
+     * Stop following the {@link PositionHolder} which is currently
+     * being followed, if present.
+     *
+     * @see #setFollowing(PositionHolder)
+     */
+    void stopFollowing();
+
+    /**
+     * Get whether this game object is currently following another gmae object
+     *
+     * @return Following status
+     */
+    boolean isFollowing();
 
 }

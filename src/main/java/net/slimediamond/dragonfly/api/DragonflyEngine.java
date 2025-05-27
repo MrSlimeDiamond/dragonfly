@@ -8,9 +8,6 @@ import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import net.slimediamond.data.registry.BasicRegistry;
 import net.slimediamond.data.registry.Registry;
-import net.slimediamond.dragonfly.api.entity.Entity;
-import net.slimediamond.dragonfly.api.entity.EntityType;
-import net.slimediamond.dragonfly.api.entity.manager.EntityManager;
 import net.slimediamond.dragonfly.api.event.EventManager;
 import net.slimediamond.dragonfly.api.event.engine.UpdateEvent;
 import net.slimediamond.dragonfly.api.input.InputHandler;
@@ -39,7 +36,7 @@ import net.slimediamond.dragonfly.api.ui.console.ConsoleInterfaceListener;
  * <p>Dragonfly is a game engine for Java.</p>
  *
  * <p>The centralized engine instance, which almost everything goes through
- * in a game, such as spawning {@link GameObject} instances, spawning {@link Entity} instances, rendering {@link Renderable} instances, and the
+ * in a game, such as spawning {@link GameObject} instances, rendering {@link Renderable}s, and
  * managers for the aforementioned.</p>
  *
  * <h2>Constructing an engine instance</h2>
@@ -161,9 +158,7 @@ public class DragonflyEngine {
 
         GameObjectManager gameObjectManager = new GameObjectManager();
         addManager(gameObjectManager);
-        addManager(new EntityManager(gameObjectManager, this));
 
-        addRegistry(new BasicRegistry<>(EntityType.class));
         addRegistry(new BasicRegistry<>(GameObjectType.class));
 
         this.camera = new Camera(this);
@@ -266,8 +261,7 @@ public class DragonflyEngine {
     /**
      * Update method, which updates game objects.
      *
-     * <p>Spawns {@link GameObject}s and their inheritors
-     * (like {@link net.slimediamond.dragonfly.api.entity.Entity})</p>
+     * <p>Spawns {@link GameObject}s and their inheritors</p>
      *
      * <p>This is executed on the client thread.</p>
      *
@@ -342,28 +336,6 @@ public class DragonflyEngine {
         submitGameObject(gameObject);
 
         return gameObject;
-    }
-
-    /**
-     * Create a {@link Entity} and submit it for rendering later
-     *
-     * @param entityType The entity type to create
-     * @param <T>        The type of entity
-     * @return The created entity
-     */
-    @SuppressWarnings("unchecked")
-    public <T extends Entity> T createEntity(EntityType entityType) {
-        ObjectCreator<? extends Entity> creator = entityType.getCreator();
-
-        T entity = (T) creator.create();
-
-        scheduler.getClientThread().queue(() -> {
-            logger.debug("Adding entity: '{}'", entity.getEntityType().getResourceKey().toString());
-            getManager(EntityManager.class).add(entity);
-        });
-        submitGameObject(entity);
-
-        return entity;
     }
 
     private void submitGameObject(GameObject gameObject) {

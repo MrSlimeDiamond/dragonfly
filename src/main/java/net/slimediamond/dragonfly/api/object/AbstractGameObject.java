@@ -2,6 +2,7 @@ package net.slimediamond.dragonfly.api.object;
 
 import java.util.Objects;
 import net.slimediamond.dragonfly.api.DragonflyEngine;
+import net.slimediamond.dragonfly.api.maths.PositionHolder;
 import net.slimediamond.dragonfly.api.maths.vector.Vector2d;
 import net.slimediamond.dragonfly.api.maths.vector.Vector2i;
 import net.slimediamond.dragonfly.api.object.camera.Camera;
@@ -16,6 +17,7 @@ public abstract class AbstractGameObject implements GameObject {
 
     private final GameObjectType type;
     private final DragonflyEngine engine;
+    private PositionHolder following;
     protected Vector2d position;
     protected boolean spawned;
 
@@ -42,7 +44,11 @@ public abstract class AbstractGameObject implements GameObject {
 
     @Override
     public void setPosition(Vector2d position) {
-        this.position = position;
+        if (isFollowing()) {
+            this.position = following.getPosition();
+        } else {
+            this.position = position;
+        }
     }
 
     @Override
@@ -77,6 +83,21 @@ public abstract class AbstractGameObject implements GameObject {
     @Override
     public Vector2i getRenderPosition() {
         return PositionTranslator.getFramePosition(getPosition(), engine.getCamera());
+    }
+
+    @Override
+    public void stopFollowing() {
+        this.following = null;
+    }
+
+    @Override
+    public void setFollowing(PositionHolder following) {
+        this.following = following;
+    }
+
+    @Override
+    public boolean isFollowing() {
+        return this.following != null;
     }
 
 }
