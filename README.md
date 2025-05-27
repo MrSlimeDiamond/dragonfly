@@ -118,7 +118,8 @@ engine.spawnGameObject(GameObjectTypes.MY_GAME_OBJECT);
 You can make a game object type as follows:
 
 ```java
-public static final GameObjectType MY_GAME_OBJECT = new GameObjectType(ResourceKey.of("my_game", "my_game_object"), MyGameObject::new);
+// MyGameObject.class will be injected
+public static final GameObjectType MY_GAME_OBJECT = GameObjectType.of(ResourceKey.of("my_game", "my_game_object"), MyGameObject.class);
 ```
 
 Then you would make a `MyGameObject` class, extending `AbstractObject`, or `GameObject` if you want
@@ -146,6 +147,7 @@ Please reference the below example:
 
 ```java
 public class MyGameObject extends AbstractGameObject {
+    @Inject
     public MyGameObject(DragonflyEngine engine) {
         super(engine, GameObjectTypes.MY_GAME_OBJECT);
     }
@@ -209,6 +211,7 @@ Here is an example `Player` class:
 ```java
 package net.slimediamond.game;
 
+import com.google.inject.Inject;
 import net.slimediamond.dragonfly.api.DragonflyEngine;
 import net.slimediamond.dragonfly.api.data.ResourcePath;
 import net.slimediamond.dragonfly.api.data.texture.Texture;
@@ -223,6 +226,7 @@ public class Player extends AbstractGameObject {
     private static final float acceleration = 75f;
     private final DragonflyEngine engine;
 
+    @Inject
     public Player(DragonflyEngine engine) {
         super(engine, GameObjectTypes.PLAYER);
         this.engine = engine;

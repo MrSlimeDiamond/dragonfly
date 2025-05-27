@@ -1,20 +1,23 @@
 package net.slimediamond.dragonfly.api.object;
 
-import java.util.function.Supplier;
 import net.slimediamond.data.identification.ResourceKey;
 import net.slimediamond.dragonfly.api.data.AbstractResourceKeyable;
 
 public class GameObjectType extends AbstractResourceKeyable {
 
-    private final Supplier<? extends GameObject> supplier;
+    private final Class<? extends GameObject> clazz;
 
-    public GameObjectType(ResourceKey resourceKey, Supplier<? extends GameObject> supplier) {
+    private GameObjectType(ResourceKey resourceKey, Class<? extends GameObject> clazz) {
         super(resourceKey);
-        this.supplier = supplier;
+        this.clazz = clazz;
     }
 
-    public ObjectCreator<? extends GameObject> getCreator() {
-        return ObjectCreator.of(supplier);
+    public static GameObjectType of(ResourceKey resourceKey, Class<? extends GameObject> clazz) {
+        return new GameObjectType(resourceKey, clazz);
+    }
+
+    public Class<? extends GameObject> getClazz() {
+        return clazz;
     }
 
 }

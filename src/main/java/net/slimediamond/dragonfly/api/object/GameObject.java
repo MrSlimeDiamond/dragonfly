@@ -45,7 +45,6 @@ import net.slimediamond.dragonfly.api.render.Renderable;
  * @see net.slimediamond.dragonfly.api.DragonflyEngine#createGameObject(GameObjectType)
  * @see net.slimediamond.dragonfly.api.object.manager.GameObjectManager
  * @see GameObjectType
- * @see DragonflyGameObjectTypes
  * @see AbstractGameObject
  */
 public interface GameObject extends DataHolder, TextureHolder, Renderable, PositionHolder {

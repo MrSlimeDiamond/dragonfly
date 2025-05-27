@@ -6,10 +6,15 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
+
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+import com.google.inject.Singleton;
 import net.slimediamond.data.registry.BasicRegistry;
 import net.slimediamond.data.registry.Registry;
 import net.slimediamond.dragonfly.api.event.EventManager;
 import net.slimediamond.dragonfly.api.event.engine.UpdateEvent;
+import net.slimediamond.dragonfly.api.inject.DragonflyModule;
 import net.slimediamond.dragonfly.api.input.InputHandler;
 import net.slimediamond.dragonfly.api.logger.LoggerWrapper;
 import net.slimediamond.dragonfly.api.manager.AbstractManager;
@@ -84,6 +89,7 @@ import net.slimediamond.dragonfly.api.ui.console.ConsoleInterfaceListener;
  * @see Registry
  * @see Scheduler
  */
+@Singleton
 public class DragonflyEngine {
 
     private final EngineConfiguration configuration;
@@ -327,11 +333,11 @@ public class DragonflyEngine {
         // When we create a game object, we need to queue it to be shown by the engine
         // So we should add it to the queue (here), and also to the game object manager.
 
-        ObjectCreator<? extends GameObject> creator = gameObjectType.getCreator();
-
         logger.debug("Creating object '{}'", gameObjectType.getResourceKey().toString());
 
-        T gameObject = (T) creator.create();
+        Injector injector = Guice.createInjector(new DragonflyModule(this));
+
+        T gameObject = (T)injector.getInstance(gameObjectType.getClazz());
 
         submitGameObject(gameObject);
 
