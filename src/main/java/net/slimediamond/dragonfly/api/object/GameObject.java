@@ -2,7 +2,6 @@ package net.slimediamond.dragonfly.api.object;
 
 import net.slimediamond.data.DataHolder;
 import net.slimediamond.dragonfly.api.data.texture.TextureHolder;
-import net.slimediamond.dragonfly.api.event.listener.DragonflyListener;
 import net.slimediamond.dragonfly.api.maths.PositionHolder;
 import net.slimediamond.dragonfly.api.maths.vector.Vector2d;
 import net.slimediamond.dragonfly.api.maths.vector.Vector2i;
@@ -47,7 +46,7 @@ import net.slimediamond.dragonfly.api.render.Renderable;
  * @see DragonflyGameObjectTypes
  * @see AbstractGameObject
  */
-public interface GameObject extends DataHolder, TextureHolder, DragonflyListener, Renderable, PositionHolder {
+public interface GameObject extends DataHolder, TextureHolder, Renderable, PositionHolder {
 
     /**
      * Spawn this game object

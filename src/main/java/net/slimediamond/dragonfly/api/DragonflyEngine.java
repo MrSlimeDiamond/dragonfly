@@ -11,7 +11,8 @@ import net.slimediamond.data.registry.Registry;
 import net.slimediamond.dragonfly.api.entity.Entity;
 import net.slimediamond.dragonfly.api.entity.EntityType;
 import net.slimediamond.dragonfly.api.entity.manager.EntityManager;
-import net.slimediamond.dragonfly.api.event.listener.DragonflyListener;
+import net.slimediamond.dragonfly.api.event.EventManager;
+import net.slimediamond.dragonfly.api.event.engine.UpdateEvent;
 import net.slimediamond.dragonfly.api.input.InputHandler;
 import net.slimediamond.dragonfly.api.logger.LoggerWrapper;
 import net.slimediamond.dragonfly.api.manager.AbstractManager;
@@ -95,6 +96,7 @@ public class DragonflyEngine {
     private final List<Runnable> renderRuns = new LinkedList<>();
     private final List<Renderable> renderables = new ArrayList<>();
     private final LoggerWrapper logger = new LoggerWrapper();
+    private final EventManager eventManager = new EventManager();
     private final Text deltaTimeText = Text.of("DeltaTime not initialized").position(Vector2i.of(5, 15));
     private final Text fpsCounter = Text.of("fps: 0").position(Vector2i.of(5, 30));
     private long lastUpdateTime = System.nanoTime();
@@ -253,6 +255,10 @@ public class DragonflyEngine {
         return consoleInterface;
     }
 
+    public EventManager getEventManager() {
+        return eventManager;
+    }
+
     /**
      * Update method, which updates game objects.
      *
@@ -278,8 +284,8 @@ public class DragonflyEngine {
             }
         }
 
-        // notify all gameobjects of this update
-        getManager(GameObjectManager.class).getAll().forEach(DragonflyListener::onUpdate);
+        // notify all listeners of this update
+        eventManager.post(new UpdateEvent(this));
         updateRuns.forEach(Runnable::run);
     }
 
@@ -361,6 +367,7 @@ public class DragonflyEngine {
             logger.debug("Adding aforementioned object creation to the queue, type: {}",
                     gameObject.getGameObjectType().getResourceKey().toString());
             getManager(GameObjectManager.class).add(gameObject);
+            eventManager.addListener(gameObject);
             objectsToSpawn.add(gameObject);
         });
     }

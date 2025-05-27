@@ -231,6 +231,8 @@ import net.slimediamond.dragonfly.api.DragonflyEngine;
 import net.slimediamond.dragonfly.api.data.ResourcePath;
 import net.slimediamond.dragonfly.api.data.texture.Texture;
 import net.slimediamond.dragonfly.api.entity.AbstractEntity;
+import net.slimediamond.dragonfly.api.event.engine.UpdateEvent;
+import net.slimediamond.dragonfly.api.event.listener.Listener;
 import net.slimediamond.dragonfly.api.maths.vector.Vector2d;
 import net.slimediamond.dragonfly.api.maths.vector.Vector2i;
 
@@ -251,8 +253,8 @@ public class Player extends AbstractEntity {
         return Texture.withPath(ResourcePath.asset("player.png"));
     }
 
-    @Override
-    public void onUpdate() {
+    @Listener
+    public void onUpdate(UpdateEvent event) {
         double deltaTime = engine.getDeltaTime().getSeconds();
         double delta = acceleration * deltaTime;
         Vector2d pos = getPosition();

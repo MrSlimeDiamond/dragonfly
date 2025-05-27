@@ -25,7 +25,7 @@ import net.slimediamond.dragonfly.api.maths.vector.Vector2i;
 public abstract class InputHandler {
 
     // TODO: user configuration
-    private static final Map<Integer, Vector2i> movement = Map.of(
+    private static final Map<Integer, Vector2i> MOVEMENT = Map.of(
             KeyEvent.VK_W, Vector2i.of(0, -1),
             KeyEvent.VK_S, Vector2i.of(0, 1),
             KeyEvent.VK_A, Vector2i.of(-1, 0),
@@ -36,7 +36,7 @@ public abstract class InputHandler {
             KeyEvent.VK_LEFT, Vector2i.of(-1, 0),
             KeyEvent.VK_RIGHT, Vector2i.of(1, 0)
     );
-    private static final Map<Axis, List<Integer>> axises = Map.of(
+    private static final Map<Axis, List<Integer>> AXISES = Map.of(
             Axis.Y, List.of(KeyEvent.VK_W, KeyEvent.VK_S, KeyEvent.VK_UP, KeyEvent.VK_DOWN),
             Axis.X, List.of(KeyEvent.VK_A, KeyEvent.VK_D, KeyEvent.VK_LEFT, KeyEvent.VK_RIGHT)
     );
@@ -93,10 +93,10 @@ public abstract class InputHandler {
          * @return Movement on that axis
          */
         public int getAxis(Axis axis) {
-            for (Integer key : axises.get(axis)) {
+            for (Integer key : AXISES.get(axis)) {
                 if (isKeyDown(key)) {
-                    if (movement.containsKey(key)) {
-                        Vector2i movementVec = movement.get(key);
+                    if (MOVEMENT.containsKey(key)) {
+                        Vector2i movementVec = MOVEMENT.get(key);
                         return (axis == Axis.X) ? movementVec.getX() : movementVec.getY();
                     }
                 }
