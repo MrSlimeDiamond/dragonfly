@@ -54,7 +54,11 @@ public class Vector2d implements Vector2<Double, Vector2d> {
         return "Vector2d{x=" + x + ",y=" + y + "}";
     }
 
-    @Override
+    /**
+     * Normalizes a decimal vector
+     *
+     * @return A copy of this vector, but normalized
+     */
     public Vector2d normalized() {
         double length = Math.sqrt(getX() * getX() + getY() * getY());
         return length == 0 ? Vector2d.ZERO : Vector2d.of(getX() / length, getY() / length);

@@ -51,23 +51,14 @@ public interface Vector2<T extends Number, Z extends Vector2<T, Z>> {
      * <p>This is the product of the magnitudes of the two vectors</p>
      *
      * <p>This calculation is via:</p>
-     * <pre>{@code
+     * <pre>
      * dot = (x1 * x2) + (y1 * y2)
-     * }</pre>
+     * </pre>
      *
      * @param other The other vector to compare to
      * @return The scalar dot product result
      */
     double dot(Z other);
-
-    /**
-     * Normalizes a vector
-     *
-     * @return Normalized vector
-     */
-    default Z normalized() {
-        throw new UnsupportedOperationException("Normalizing is not supported on non floating-point vectors");
-    }
 
     /**
      * Find the distance from this vector to another
