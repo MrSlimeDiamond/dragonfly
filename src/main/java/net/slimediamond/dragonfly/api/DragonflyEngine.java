@@ -12,6 +12,9 @@ import com.google.inject.Injector;
 import com.google.inject.Singleton;
 import net.slimediamond.data.registry.BasicRegistry;
 import net.slimediamond.data.registry.Registry;
+import net.slimediamond.dragonfly.api.command.builtin.DebugCommands;
+import net.slimediamond.dragonfly.api.command.subsystem.CommandManager;
+import net.slimediamond.dragonfly.api.command.subsystem.DefaultCommandManager;
 import net.slimediamond.dragonfly.api.event.EventManager;
 import net.slimediamond.dragonfly.api.event.engine.UpdateEvent;
 import net.slimediamond.dragonfly.api.inject.DragonflyModule;
@@ -22,7 +25,6 @@ import net.slimediamond.dragonfly.api.maths.time.Time;
 import net.slimediamond.dragonfly.api.maths.vector.Vector2i;
 import net.slimediamond.dragonfly.api.object.GameObject;
 import net.slimediamond.dragonfly.api.object.GameObjectType;
-import net.slimediamond.dragonfly.api.object.ObjectCreator;
 import net.slimediamond.dragonfly.api.object.camera.Camera;
 import net.slimediamond.dragonfly.api.object.manager.GameObjectManager;
 import net.slimediamond.dragonfly.api.object.text.Text;
@@ -101,11 +103,13 @@ public class DragonflyEngine {
     private final List<Renderable> renderables = new ArrayList<>();
     private final LoggerWrapper logger = new LoggerWrapper();
     private final EventManager eventManager = new EventManager();
+    private final CommandManager commandManager = new DefaultCommandManager();
     private final Text deltaTimeText = Text.of("DeltaTime not initialized").position(Vector2i.of(5, 15));
     private final Text fpsCounter = Text.of("fps: 0").position(Vector2i.of(5, 30));
     private long lastUpdateTime = System.nanoTime();
     private long lastFrameCountedTime = System.nanoTime();
     private boolean initialized = false;
+    private boolean showFps = true;
     private int maxFps = 0;
     private Scheduler scheduler;
     private Renderer renderer;
@@ -145,6 +149,7 @@ public class DragonflyEngine {
         this.consoleInterface = new ConsoleInterface(this);
 
         eventManager.addListener(new ConsoleInterfaceListener(this));
+        commandManager.registerCommands(new DebugCommands());
         addRenderable(consoleInterface);
 
         scheduler.getClientThread().queue(() -> {
@@ -156,8 +161,8 @@ public class DragonflyEngine {
 
             input.begin(this);
 
-            addRenderable(deltaTimeText);
-            addRenderable(fpsCounter);
+//            addRenderable(deltaTimeText);
+//            addRenderable(fpsCounter);
         });
 
         scheduler.getClientThread().start();
@@ -256,6 +261,14 @@ public class DragonflyEngine {
         return initialized;
     }
 
+    public boolean isShowFps() {
+        return showFps;
+    }
+
+    public void setShowFps(boolean showFps) {
+        this.showFps = showFps;
+    }
+
     public ConsoleInterface getConsoleInterface() {
         return consoleInterface;
     }
@@ -309,6 +322,11 @@ public class DragonflyEngine {
         }
 
         renderer.clear();
+
+        if (showFps) {
+            deltaTimeText.render(new DragonflyRenderContext(this, graphics, deltaTimeText.getRenderPosition()));
+            fpsCounter.render(new DragonflyRenderContext(this, graphics, fpsCounter.getRenderPosition()));
+        }
 
         renderables.forEach(renderable -> {
             RenderContext context = new DragonflyRenderContext(this, graphics, renderable.getRenderPosition());
