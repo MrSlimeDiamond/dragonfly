@@ -101,6 +101,9 @@ public class OpenGLGraphics implements Graphics {
 
     @Override
     public void drawString(String content, Font font, int xPos, int yPos, Color color) {
+        if (content.isEmpty()) {
+            return;
+        }
         FontRenderContext frc = new FontRenderContext(null, true, true);
         Rectangle2D bounds = font.getStringBounds(content, frc);
 
