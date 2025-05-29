@@ -54,7 +54,11 @@ public final class Keybinds {
      * @return The bind, if present, else {@link Optional#empty()}
      */
     public static Optional<String> getBind(int key) {
-        return Optional.ofNullable(keybinds.getOrDefault(key, defaults.get(key)));
+        if (keybinds.isEmpty()) {
+            return Optional.ofNullable(defaults.get(key));
+        } else {
+            return Optional.ofNullable(keybinds.get(key));
+        }
     }
 
     /**

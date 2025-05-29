@@ -2,6 +2,7 @@ package net.slimediamond.dragonfly.api;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.LinkedList;
@@ -97,6 +98,7 @@ import net.slimediamond.dragonfly.api.ui.console.ConsoleInterfaceListener;
 @Singleton
 public class DragonflyEngine {
 
+    private static final String KEYBINDS_CONFIG = "keybinds.json";
     private final EngineConfiguration configuration;
     private final List<Registry<?>> registries = new LinkedList<>();
     private final List<AbstractManager<?>> managers = new LinkedList<>();
@@ -159,11 +161,11 @@ public class DragonflyEngine {
             if (configPath.toFile().mkdirs()) {
                 logger.info("Dragonfly config path created");
             }
-            File keybindsFile = configPath.resolve("keybinds.json").toFile();
+            File keybindsFile = configPath.resolve(KEYBINDS_CONFIG).toFile();
             Keybinds.load(keybindsFile);
             // ...then write
             try {
-                Keybinds.write(keybindsFile);
+                writeKeybinds();
             } catch (IOException e) {
                 // not likely to happen
                 throw new RuntimeException(e);
@@ -451,6 +453,25 @@ public class DragonflyEngine {
      */
     public void addRenderListener(Runnable runnable) {
         renderRuns.add(runnable);
+    }
+
+    /**
+     * Write keybinds to the configuration file
+     *
+     * <p>In some cases, {@link EngineConfiguration#getConfigPath()} is
+     * not set. This means no keybinds will save/persist (only for some
+     * games)</p>
+     *
+     * @return Whether the keybinds were saved.
+     */
+    public boolean writeKeybinds() throws IOException {
+        if (configuration.getConfigPath().isPresent()) {
+            Path configPath = configuration.getConfigPath().get();
+            File file = configPath.resolve(KEYBINDS_CONFIG).toFile();
+            Keybinds.write(file);
+            return true;
+        }
+        return false;
     }
 
 }
