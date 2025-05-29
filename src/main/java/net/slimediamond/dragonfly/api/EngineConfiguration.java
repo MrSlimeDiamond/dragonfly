@@ -4,6 +4,9 @@ import net.slimediamond.dragonfly.api.input.InputHandler;
 import net.slimediamond.dragonfly.api.logger.Logger;
 import net.slimediamond.dragonfly.api.render.Renderer;
 
+import java.nio.file.Path;
+import java.util.Optional;
+
 /**
  * The configuration for {@link DragonflyEngine}
  *
@@ -46,6 +49,11 @@ import net.slimediamond.dragonfly.api.render.Renderer;
  *         <td>Input handler</td>
  *         <td>The {@link InputHandler} that the engine will use</td>
  *         <td><i>None</i> - <b>required</b></td>
+ *     </tr>
+ *     <tr>
+ *         <td>Config path</td>
+ *         <td>The configuration path, storing {@link net.slimediamond.dragonfly.api.input.keybind.Keybinds} etc</td>
+ *         <td><i>None</i></td>
  *     </tr>
  * </table>
  * </div>
@@ -100,6 +108,13 @@ public interface EngineConfiguration {
      */
     InputHandler getInputHandler();
 
+    /**
+     * Get the configuration directory for the game
+     *
+     * @return Game configuration directory
+     */
+    Optional<Path> getConfigPath();
+
     class Builder {
 
         private String title = "Dragonfly engine";
@@ -108,6 +123,7 @@ public interface EngineConfiguration {
         private Logger logger;
         private Renderer renderer;
         private InputHandler inputHandler;
+        private Path configDirectory;
 
         public Builder title(String title) {
             this.title = title;
@@ -136,6 +152,11 @@ public interface EngineConfiguration {
 
         public Builder inputHandler(InputHandler inputHandler) {
             this.inputHandler = inputHandler;
+            return this;
+        }
+
+        public Builder configDirectory(Path configDirectory) {
+            this.configDirectory = configDirectory;
             return this;
         }
 
@@ -169,6 +190,11 @@ public interface EngineConfiguration {
                 @Override
                 public InputHandler getInputHandler() {
                     return inputHandler;
+                }
+
+                @Override
+                public Optional<Path> getConfigPath() {
+                    return Optional.ofNullable(configDirectory);
                 }
             };
         }

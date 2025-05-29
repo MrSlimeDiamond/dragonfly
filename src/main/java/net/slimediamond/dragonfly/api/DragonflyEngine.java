@@ -1,5 +1,7 @@
 package net.slimediamond.dragonfly.api;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.LinkedList;
@@ -19,6 +21,7 @@ import net.slimediamond.dragonfly.api.event.EventManager;
 import net.slimediamond.dragonfly.api.event.engine.UpdateEvent;
 import net.slimediamond.dragonfly.api.inject.DragonflyModule;
 import net.slimediamond.dragonfly.api.input.InputHandler;
+import net.slimediamond.dragonfly.api.input.keybind.Keybinds;
 import net.slimediamond.dragonfly.api.logger.LoggerWrapper;
 import net.slimediamond.dragonfly.api.manager.AbstractManager;
 import net.slimediamond.dragonfly.api.maths.time.Time;
@@ -151,6 +154,22 @@ public class DragonflyEngine {
         eventManager.addListener(new ConsoleInterfaceListener(this));
         commandManager.registerCommands(new DebugCommands());
         addRenderable(consoleInterface);
+
+        configuration.getConfigPath().ifPresent(configPath -> {
+            System.out.println(configPath);
+            if (configPath.toFile().mkdirs()) {
+                logger.info("Dragonfly config path created");
+            }
+            File keybindsFile = configPath.resolve("keybinds.json").toFile();
+            Keybinds.load(keybindsFile);
+            // ...then write
+            try {
+                Keybinds.write(keybindsFile);
+            } catch (IOException e) {
+                // not likely to happen
+                throw new RuntimeException(e);
+            }
+        });
 
         scheduler.getClientThread().queue(() -> {
             renderer.init(
@@ -337,6 +356,23 @@ public class DragonflyEngine {
 
         // engine.addRenderListener stuff
         renderRuns.forEach(Runnable::run);
+    }
+
+    /**
+     * Stop the game
+     */
+    public void stop() {
+        logger.info("Shutting down!");
+        scheduler.getClientThread().setRunning(false);
+        configuration.getConfigPath().ifPresent(configPath -> {
+            try {
+                Keybinds.write(configPath.resolve("keybinds.json").toFile());
+            } catch (IOException e) {
+                logger.error(e);
+            }
+        });
+        logger.info("Cya :)");
+        renderer.stop();
     }
 
     /**

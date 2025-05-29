@@ -21,4 +21,5 @@ allprojects {
 
 dependencies {
     implementation 'com.google.inject:guice:7.0.0'
+    implementation 'com.google.code.gson:gson:2.13.1'
 }

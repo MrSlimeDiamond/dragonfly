@@ -25,8 +25,7 @@ public class ClientThread extends Thread {
         while (running) {
             long startTime = System.nanoTime();
             if (!engine.getRenderer().shouldDisplayWindow()) {
-                engine.getLogger().info("Shutting down!");
-                engine.getRenderer().stop();
+                engine.stop();
                 setRunning(false);
                 break;
             }
