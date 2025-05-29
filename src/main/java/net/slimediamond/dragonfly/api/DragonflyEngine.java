@@ -156,7 +156,6 @@ public class DragonflyEngine {
         addRenderable(consoleInterface);
 
         configuration.getConfigPath().ifPresent(configPath -> {
-            System.out.println(configPath);
             if (configPath.toFile().mkdirs()) {
                 logger.info("Dragonfly config path created");
             }
