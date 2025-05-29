@@ -180,9 +180,6 @@ public class DragonflyEngine {
             );
 
             input.begin(this);
-
-//            addRenderable(deltaTimeText);
-//            addRenderable(fpsCounter);
         });
 
         scheduler.getClientThread().start();
@@ -343,15 +340,15 @@ public class DragonflyEngine {
 
         renderer.clear();
 
-        if (showFps) {
-            deltaTimeText.render(new DragonflyRenderContext(this, graphics, deltaTimeText.getRenderPosition()));
-            fpsCounter.render(new DragonflyRenderContext(this, graphics, fpsCounter.getRenderPosition()));
-        }
-
         renderables.forEach(renderable -> {
             RenderContext context = new DragonflyRenderContext(this, graphics, renderable.getRenderPosition());
             renderable.render(context);
         });
+
+        if (showFps) {
+            deltaTimeText.render(new DragonflyRenderContext(this, graphics, deltaTimeText.getRenderPosition()));
+            fpsCounter.render(new DragonflyRenderContext(this, graphics, fpsCounter.getRenderPosition()));
+        }
 
         renderer.render();
 
