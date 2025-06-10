@@ -3,6 +3,7 @@ package net.slimediamond.dragonfly.api.ui;
 import net.slimediamond.dragonfly.api.object.text.Text;
 import net.slimediamond.dragonfly.api.render.RenderContext;
 import net.slimediamond.dragonfly.api.render.Renderable;
+import net.slimediamond.dragonfly.api.render.RenderingPriority;
 
 import java.util.function.Consumer;
 
@@ -113,9 +114,10 @@ public interface UserInterface extends Renderable {
             this.title = title;
         }
 
+        @RenderingPriority(RenderingPriority.Priority.LAST)
         @Override
         public void render(RenderContext context) {
-            // TODO: Make a nice box with the title
+            // TODO: Make a nice box with the title or something
             if (isVisible()) {
                 this.renderUI(context);
             }

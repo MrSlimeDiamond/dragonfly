@@ -6,6 +6,7 @@ import net.slimediamond.dragonfly.api.maths.vector.Vector2i;
 import net.slimediamond.dragonfly.api.render.Colors;
 import net.slimediamond.dragonfly.api.render.RenderContext;
 import net.slimediamond.dragonfly.api.render.Renderable;
+import net.slimediamond.dragonfly.api.render.RenderingPriority;
 
 /**
  * Text which can be rendered ingame
@@ -75,6 +76,7 @@ public class Text implements Renderable {
         return this;
     }
 
+    @RenderingPriority(RenderingPriority.Priority.LAST)
     @Override
     public void render(RenderContext context) {
         Vector2i pos = context.getRenderPosition();

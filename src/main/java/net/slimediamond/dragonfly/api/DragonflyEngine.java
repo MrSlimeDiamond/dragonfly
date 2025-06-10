@@ -422,7 +422,8 @@ public class DragonflyEngine {
      */
     public void addRenderable(Renderable renderable) {
         renderables.add(renderable);
-        renderables.sort(Comparator.comparing(r -> r instanceof Text ? 1 : 0));
+        renderables.sort(Comparator.comparingInt(r -> r.getPriority().getWeight()));
+        System.out.println(renderables);
     }
 
     /**

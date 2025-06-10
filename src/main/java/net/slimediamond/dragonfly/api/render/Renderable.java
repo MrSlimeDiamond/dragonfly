@@ -3,6 +3,8 @@ package net.slimediamond.dragonfly.api.render;
 import net.slimediamond.dragonfly.api.DragonflyEngine;
 import net.slimediamond.dragonfly.api.maths.vector.Vector2i;
 
+import java.lang.reflect.Method;
+
 /**
  * Something which can be rendered, using the current {@link Renderer}
  *
@@ -43,6 +45,25 @@ public interface Renderable {
      * @param context The context of the render
      */
     void render(RenderContext context);
+
+    /**
+     * Get the priority of rendering this {@link Renderable}
+     *
+     * <p>Higher priority - renders <b>last</b>.</p>
+     *
+     * @return Rendering priority
+     */
+    default RenderingPriority.Priority getPriority() {
+        try {
+            Method method = getClass().getMethod("render", RenderContext.class);
+            if (method.isAnnotationPresent(RenderingPriority.class)) {
+                return method.getAnnotation(RenderingPriority.class).value();
+            }
+        } catch (NoSuchMethodException e) {
+            return RenderingPriority.Priority.FIRST;
+        }
+        return RenderingPriority.Priority.FIRST;
+    }
 
     /**
      * Get the position which this will render at
